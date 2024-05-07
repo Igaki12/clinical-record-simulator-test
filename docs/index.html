@@ -1,0 +1,36 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>電子カルテシミュレータ</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript">
+        // 非同期でPythonスクリプトを実行する
+        function link1Click() {
+            eel.link1_click();
+        }
+        
+        // Pythonスクリプトに引数を渡し、結果の帰り値を待つ例
+        async function link2Click() {
+            let val = await eel.link2_click("args-test")();
+            alert(val);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 中央揃えで -->
+    <div style="text-align: center;">
+        <div class="title">
+            <h1>Clinical-Record-Simulator</h1>
+        </div>
+        
+        <a href="#" onclick="link1Click()">Link1</a>
+        <br>
+        <a href="#" onclick="link2Click()">Link2</a>
+        <br>
+        <img src="img/x1.png" alt="x1.png">
+        <img src="img/x2.png" alt="x2.png">
+    </div>
+</body>
+</html>

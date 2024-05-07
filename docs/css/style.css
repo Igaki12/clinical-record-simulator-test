@@ -1,0 +1,9 @@
+div.title {
+    text-align: center;
+    background: -webkit-linear-gradient(0deg, #FF0000, #0000FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: solid 1px black;
+    border-radius: 10px;
+}
