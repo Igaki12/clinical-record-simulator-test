@@ -39,17 +39,23 @@
         <br>
         <a href="#" onclick="link2Click()">Link2</a>
         <br>
-        <!-- 黒い枠線 -->
-        <div class="frame">
-            <p>問題</p>
-            <p id="question">質問</p>
-            <!-- res1="\n-----------------------------------------------------\n\nWBC: 7,800/μl(3,000~7,800)\nRBC: 342万/μl(353~466)\nHgb: 10.7/dl(10.6~14.4)\nHtc: 33.4%(32.1~42.7)\nPlt: 16.0万(13.8~30.9)\nCRP: 0.9mg/dl(~0.3)\n\nTP: 7.2g/dl(6.5~8.3)\nAlb: 4.0g/dl(3.8~5.3)\n\nAST: 28U/L(5~40)\nALT: 29U/L(5~40)\nCPK: 60IU/L(62~230)\nAMY: 44IU/L(37~125)\nGLU: 90mg/dl(69~110)\nHbA1c: 5.2%(4.7~6.2)\n\n-----------------------------------------------------\n"
-res2="\n-----------------------------------------------------\n\n意識は清明。\n身長154cm・体重54kg\n体温37.4℃\n脈拍88/分、整\n血圧120/84mmHg\n呼吸数14/分\n腹部は平坦・軟で左下腹部に圧痛を認めるが、筋性防御は認めなかった。\n\n-----------------------------------------------------\n"
- -->
+        <div class="flex-box">
+            <div class="flex-content1"></div>
+            <div class="flex-content2">
+                <div class="frame">
+                    <p>問題</p>
+                    <p id="question">ここに問題が表示されます。</p>
+                    <!-- res1="\n-----------------------------------------------------\n\nWBC: 7,800/μl(3,000~7,800)\nRBC: 342万/μl(353~466)\nHgb: 10.7/dl(10.6~14.4)\nHtc: 33.4%(32.1~42.7)\nPlt: 16.0万(13.8~30.9)\nCRP: 0.9mg/dl(~0.3)\n\nTP: 7.2g/dl(6.5~8.3)\nAlb: 4.0g/dl(3.8~5.3)\n\nAST: 28U/L(5~40)\nALT: 29U/L(5~40)\nCPK: 60IU/L(62~230)\nAMY: 44IU/L(37~125)\nGLU: 90mg/dl(69~110)\nHbA1c: 5.2%(4.7~6.2)\n\n-----------------------------------------------------\n"
+        res2="\n-----------------------------------------------------\n\n意識は清明。\n身長154cm・体重54kg\n体温37.4℃\n脈拍88/分、整\n血圧120/84mmHg\n呼吸数14/分\n腹部は平坦・軟で左下腹部に圧痛を認めるが、筋性防御は認めなかった。\n\n-----------------------------------------------------\n"
+         -->
+                </div>
+                <div class="next-button-div">
+                    <button class="next-button" id="nextButton" onclick="nextQuestion()">開始</button>
+                </div>
+            </div>
+            <div class="flex-content3"></div>
         </div>
-        <div class="next-button-div">
-            <button class="next-button" id="nextButton" onclick="nextQuestion()">開始</button>
-        </div>
+
         <img src="img/x1.png" alt="x1.png">
         <img src="img/x2.png" alt="x2.png">
     </div>

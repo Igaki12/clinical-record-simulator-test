@@ -21,3 +21,33 @@ div.next-button-div{
     width: 200px;
     /* height: 50px; */
 }
+div.flex-box {
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+div.flex-content1{
+    background-color: lightgray;
+    /* border-radius: 10px; */
+    min-width: 200px;
+    height: 400px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+div.flex-content3 {
+    background-color: lightgray;
+    /* border-radius: 10px; */
+    min-width: 200px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+div.flex-content2 {
+    /* background-color: blanchedalmond; */
+    width: 400px;
+    margin: 10px;
+}
