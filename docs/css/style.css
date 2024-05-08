@@ -7,3 +7,17 @@ div.title {
     border: solid 1px black;
     border-radius: 10px;
 }
+div.frame {
+    border: solid 1px black;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+div.next-button-div{
+    text-align: center;
+}
+.next-button{
+    margin: 10px auto;
+    width: 200px;
+    /* height: 50px; */
+}
