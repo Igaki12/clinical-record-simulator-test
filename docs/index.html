@@ -1,63 +1,175 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>電子カルテシミュレータ</title>
-    <script type="text/javascript" src="/eel.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript">
-        let question_index = 1;
-        function setQuestion() {
-            let val = eel.next_question(question_index)();
-            document.getElementById("question").innerText = val;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子カルテ</title>
+    <style>
+        /* CSS スタイルはここに記述します */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
+        header {
+            /* background-color: #333; */
+            color: #fff;
+            display: flex;
+            padding: 0px;
+            height: 20vh;
+            font-size: small;
+            text-align: left;
+            align-items: end;
+        }
+        .column1{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+            background-color: #333;
+        }
+        .column2{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 15%;
+            background-color: #222;
+        }
+        .column3{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+            background-color: #333;
+        }
+        .column4{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 30%;
+            background-color: #222;
+        }
+        .column4 p{
+            font-size: smaller;
+            margin-bottom: -10px;
+        }
+        .column5{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 10%;
+            background-color: #333;
+        }
+        .column6{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 10%;
+            background-color: #222;
+        }
+        .column7{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+            background-color: #333;
+        }
+        .column8{
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+            background-color: #222;
+            vertical-align: bottom;
+        }
+        .column9{
 
-        // 非同期でPythonスクリプトを実行する
-        
-        // Pythonスクリプトに引数を渡し、結果の帰り値を待つ例
-        async function link2Click() {
-            let val = await eel.link2_click("args-test")();
-            alert(val);
+            height: 20vh;
+            width: 5%;
+            background-color: #333;
         }
-        async function nextQuestion() {
-            let val = await eel.next_question(question_index)();
-            question_index++;
-            document.getElementById("question").innerText = val;
-            document.getElementById("nextButton").innerText = "次の問題";
-            // alert("次の問題を表示します：" + question_index);
+        .head_close_all{
+            height: 20vh;
+            padding-left: 5px;
+            padding-top: 5px;
+            width: 5%;
+            background-color: #222;
         }
-    </script>
+        nav {
+            float: left;
+            width: 25%;
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .main-flex {
+            display: flex;
+            width: 100%;
+            /* padding: 20px; */
+        }
+        .main-column{
+            width: 50%;
+            background-color: lightgray;
+            padding: 20px;
+            height: 100vh;
+        }
+        .progress-note {
+            float: left;
+            width: 25%;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            clear: both;
+        }
+    </style>
 </head>
-
 <body>
-    <!-- 中央揃えで -->
-    <div style="text-align: center;">
-        <div class="title">
-            <h1>Clinical-Record-Simulator</h1>
+    <header>
+        <div class="column1">
+            <p>外来</p>
+            <p>内科</p>
         </div>
-        
-        <a href="#" onclick="link1Click()">Link1</a>
-        <br>
-        <a href="#" onclick="link2Click()">Link2</a>
-        <br>
-        <div class="flex-box">
-            <div class="flex-content1"></div>
-            <div class="flex-content2">
-                <div class="frame">
-                    <p>問題</p>
-                    <p id="question">ここに問題が表示されます。</p>
-                    <!-- res1="\n-----------------------------------------------------\n\nWBC: 7,800/μl(3,000~7,800)\nRBC: 342万/μl(353~466)\nHgb: 10.7/dl(10.6~14.4)\nHtc: 33.4%(32.1~42.7)\nPlt: 16.0万(13.8~30.9)\nCRP: 0.9mg/dl(~0.3)\n\nTP: 7.2g/dl(6.5~8.3)\nAlb: 4.0g/dl(3.8~5.3)\n\nAST: 28U/L(5~40)\nALT: 29U/L(5~40)\nCPK: 60IU/L(62~230)\nAMY: 44IU/L(37~125)\nGLU: 90mg/dl(69~110)\nHbA1c: 5.2%(4.7~6.2)\n\n-----------------------------------------------------\n"
-        res2="\n-----------------------------------------------------\n\n意識は清明。\n身長154cm・体重54kg\n体温37.4℃\n脈拍88/分、整\n血圧120/84mmHg\n呼吸数14/分\n腹部は平坦・軟で左下腹部に圧痛を認めるが、筋性防御は認めなかった。\n\n-----------------------------------------------------\n"
-         -->
-                </div>
-                <div class="next-button-div">
-                    <button class="next-button" id="nextButton" onclick="nextQuestion()">開始</button>
-                </div>
-            </div>
-            <div class="flex-content3"></div>
+        <div class="column2">
+            <p>患者情報</p>
+            <p>患者ID: 123456</p>
         </div>
-
-        <img src="img/x1.png" alt="x1.png">
-        <img src="img/x2.png" alt="x2.png">
+        <div class="column3"></div>
+        <div class="column4">
+            <p>やまだ　たろう</p>
+            <h3>山田　太郎</h3>
+        </div>
+        <div class="column5">
+            <p>性別: 男</p>
+            <p>69歳6ヶ月</p>
+        </div>
+        <div class="column6">
+            <p>O型 Rh(+)</p>
+        </div>
+        <div class="column7">
+            <p>155.0cm</p>
+        </div>
+        <div class="column8">
+            <p>63.000kg</p>
+        </div>
+        <div class="column9"></div>
+        <div class="head_close_all">
+            <p>閉じる</p>
+        </div>
+    </header>
+    <div class="main-flex">
+        <nav>
+            <h2>ナビゲーション</h2>
+            <!-- ナビゲーションメニューのリンクなどをここに追加 -->
+        </nav>
+        <div class="main-column">
+            <h2>バイタル</h2>
+            <br>
+            <h2>薬剤処方状況</h2>
+            <!-- 患者情報をここに表示 -->
+        </div>
+        <div class="main-column">
+            <h2>プログレスノート</h2>
+            <!-- 診察記録や検査結果などの情報をここに表示 -->
+        </div>
     </div>
+    <footer>
+        <p>© 2024 電子カルテシステム</p>
+    </footer>
 </body>
 </html>
