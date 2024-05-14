@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINEチャット</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #d2e1f0;
+        }
+
+        .chat-container {
+            width: 360px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #e1eff7;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #6285a3;
+            color: white;
+        }
+
+        .left-icons, .right-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .left-icons span {
+            margin-right: 10px;
+        }
+
+        .left-icons i, .right-icons i {
+            margin-left: 10px;
+        }
+
+        .title {
+            font-size: 16px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .message-container {
+            padding: 10px;
+            overflow-y: auto;
+            height: calc(100vh - 100px);
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .message.received {
+            justify-content: flex-start;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+            position: relative;
+        }
+
+        .message.received .message-content {
+            background-color: #f1f1f1;
+        }
+
+        .message-content p {
+            margin: 0;
+            word-wrap: break-word;
+        }
+
+        .screenshot {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: #999;
+            position: absolute;
+            bottom: -15px;
+            right: 10px;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer i {
+            margin: 0 10px;
+            color: #6285a3;
+        }
+
+        .footer input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <div class="left-icons">
+                <span>12:15</span>
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+            <div class="title">Κσμκι Ακίτα, 井垣, Kaede(3)</div>
+            <div class="right-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-phone"></i>
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <div class="message-container">
+            <div class="message received">
+                <div class="message-content">
+                    <p>ありがとうございます<br>ではこっちでちょとやってみて生成コードを送りますね</p>
+                    <span class="timestamp">13:13</span>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-content">
+                    <p>ありがとうございます</p>
+                    <span class="timestamp">14:27</span>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-content">
+                    <img src="screenshot.png" alt="スクリーンショット" class="screenshot">
+                    <p>よければこちらのスクリーンショットでも、お願いします。</p>
+                    <span class="timestamp">15:30</span>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-content">
+                    <p>了解です<br>ではこのスクリーンショットでやりますね<br>割とすぐ要りますか？<br>11月くらいからということだったと思いますが</p>
+                    <span class="timestamp">15:56</span>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-content">
+                    <p>すいません、もうちょっと考えます！</p>
+                    <span class="timestamp">17:08</span>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-content">
+                    <p>いえいえ<br>お願いします</p>
+                    <span class="timestamp">17:46</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <i class="fas fa-plus"></i>
+            <i class="fas fa-camera"></i>
+            <i class="fas fa-image"></i>
+            <i class="fas fa-microphone"></i>
+            <input type="text" placeholder="メッセージを入力">
+            <i class="fas fa-smile"></i>
+        </div>
+    </div>
+</body>
+</html>

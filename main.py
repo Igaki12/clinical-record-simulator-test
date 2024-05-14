@@ -16,6 +16,8 @@ question_list = [
 def main():
     eel.init("docs")
     eel.start("index.html")
+    # ２つ目のスクリーンを起動
+    eel.start("chat_screen_generated2.html")
 
 
 """link1が押下された際に呼び出すスクリプト"""

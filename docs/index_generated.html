@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子カルテシステム</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .content {
+            height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+        .nav-item {
+            list-style-type: none;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .nav-item a:hover {
+            text-decoration: underline;
+        }
+        .section-title {
+            background-color: #e9ecef;
+            padding: 5px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-top: 1px solid #dee2e6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="header row align-items-center">
+            <div class="col-md-4">
+                <img src="placeholder.png" alt="患者画像" class="img-fluid">
+                <div>ID: 9990000040<br>患者: 廣子<br>性別: 女<br>年齢: 69歳</div>
+            </div>
+            <div class="col-md-4 text-center">
+                <h4>電子カルテシステム</h4>
+            </div>
+            <div class="col-md-4 text-right">
+                <button class="btn btn-primary">保存</button>
+                <button class="btn btn-secondary">閉じる</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="section-title">ナビゲーター</div>
+                <ul class="nav flex-column content">
+                    <li class="nav-item"><a href="#">概要</a></li>
+                    <li class="nav-item"><a href="#">診療歴</a></li>
+                    <li class="nav-item"><a href="#">処方箋</a></li>
+                    <!-- 他のナビゲーション項目を追加 -->
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <div class="section-title">診療履歴</div>
+                <div class="content">
+                    <div>
+                        <h5>【プログレスノート】 2011/05/19(木) 10:00</h5>
+                        <p>(S) BS 112<br>(O) 血圧 142/82<br>(A) HBA1C 6.1%</p>
+                    </div>
+                    <div>
+                        <h5>【処方箋】 2011/05/19(木)</h5>
+                        <p>1. レベニース錠 1錠<br>2. アデラートCR錠 40mg</p>
+                    </div>
+                    <!-- 他の診療履歴を追加 -->
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="section-title">次回診療</div>
+                <div class="content">
+                    <div>
+                        <h5>【プログレスノート】 2011/06/16(木) 10:20</h5>
+                        <p># (S)<br>(O)<br>(A)<br>(P)</p>
+                    </div>
+                    <!-- 他の次回診療情報を追加 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn btn-info">新規処方</button>
+            <button class="btn btn-info">再診予約</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
