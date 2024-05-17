@@ -25,7 +25,6 @@ question_list = [
 
 def main():
     eel.init("docs")
-    #２つのスクリーンを同時に起動
     eel.start("index.html", size=(800, 600))
 
 # def main():
