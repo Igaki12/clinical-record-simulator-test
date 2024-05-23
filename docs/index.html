@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>電子カルテ</title>
     <script type="text/javascript">
-$(function () {
-  $('#openModal').click(function(){
-      $('#modalArea').fadeIn();
-  });
-  $('#closeModal , #modalBg').click(function(){
-    $('#modalArea').fadeOut();
-  });
-});
+        function openAnswerModal() {
+            document.getElementById('modalArea').style.display = 'block';
+        }
+        function closeAnswerModal() {
+            document.getElementById('modalArea').style.display = 'none';
+        }
+// $(function () {
+//   $('#openModal').click(function(){
+//       $('#modalArea').fadeIn();
+//   });
+//   $('#closeModal , #modalBg').click(function(){
+//     $('#modalArea').fadeOut();
+//   });
+// });
     </script>
     <style>
         /* CSS スタイルはここに記述します */
@@ -493,7 +499,7 @@ $(function () {
         }
         /* モーダルウィンドウ */
         #modalArea {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 10; /*サイトによってここの数値は調整 */
   top: 0;
@@ -860,7 +866,7 @@ $(function () {
                 <button id="open_answer_modal" onclick="openAnswerModal()">解答を採点する</button>
             </div>
             <!-- 解答採点中のmodal windowを用意する -->
-            <section id="modalArea" class="modalArea">
+            <section id="modalArea" class="modalArea" style="display: none;">
                 <div id="modalBg" class="modalBg"></div>
                 <div class="modalWrapper">
                   <div class="modalContents">
