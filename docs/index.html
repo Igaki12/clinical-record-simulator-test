@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>電子カルテ</title>
     <script type="text/javascript">
-        function openAnswerModal() {
-            // モーダルウィンドウを表示する
-            alert("解答を採点します");
-            document.getElementById("answer-modal").style.display = "block";
-        }
-        function closeAnswerModal() {
-            // モーダルウィンドウを非表示にする
-            document.getElementById("answer-modal").style.display = "none";
-        }
+$(function () {
+  $('#openModal').click(function(){
+      $('#modalArea').fadeIn();
+  });
+  $('#closeModal , #modalBg').click(function(){
+    $('#modalArea').fadeOut();
+  });
+});
     </script>
     <style>
         /* CSS スタイルはここに記述します */
@@ -858,9 +857,7 @@
 
             <div class="command-panel">
                 <button id="skip_btn">この問題をスキップ</button>
-                <button id="open_answer_modal" onclick="openAnswerModal()">
-                    解答を採点する
-                </button>
+                <button id="open_answer_modal" onclick="openAnswerModal()">解答を採点する</button>
             </div>
             <!-- 解答採点中のmodal windowを用意する -->
             <section id="modalArea" class="modalArea">
