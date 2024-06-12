@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>電子カルテ</title>
+    <script type="text/javascript">
+        function openAnswerModal() {
+            document.getElementById('modalArea').style.display = 'block';
+        }
+        function closeAnswerModal() {
+            document.getElementById('modalArea').style.display = 'none';
+        }
+        function openImageModal() {
+            document.getElementById('imageArea').style.display = 'block';
+        }
+        function closeImageModal() {
+            document.getElementById('imageArea').style.display = 'none';
+        }
+
+
+
+
+
+        // パラパラ漫画をJavascriptで実装
+        document.addEventListener('DOMContentLoaded', function() {
+        let img = document.getElementById("imagePlace");
+        let index = 1;
+        document.getElementById("imagePlace").addEventListener("wheel", wheelpa, { passive: false });
+        function wheelpa(event) {
+            event.preventDefault();
+            if (event.wheelDelta == -20) {
+                console.log("手前")
+                // alert("手前")
+                index++;
+                if (index > 8) {     //画像の枚数を指定する。
+                    index = 1
+                }
+                // img.src = "https://lifeinfo-navi.com/wp-content/uploads/2022/02/" + index + ".png";
+                img.src = "./img/" + index + ".png";
+            }
+            if (event.wheelDelta == 20) {
+                console.log("おく")
+                // alert("おく")
+                index--;
+                if (index < 1) {     //画像の枚数を指定する。
+                    index = 8
+                }
+                // img.src = "https://lifeinfo-navi.com/wp-content/uploads/2022/02/" + index + ".png";
+                img.src = "./img/" + index + ".png";
+            }
+        }
+    });
+    </script>
+    <style>
+        /* CSS スタイルはここに記述します */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body button {
+            /* レトロな色のボタンデザイン */
+            font-size: small;
+            background-color: #fffffff3;
+            border: 1px solid #333;
+            border-radius: 1px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .field-parent {
+            /* 作成後解除する */
+            display: flex;
+            width: 100%;
+            background-color: #f4f4f4;
+        }
+
+        .center-field {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+        }
+
+        .header {
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            padding: 0px;
+            height: 80px;
+            font-size: small;
+            text-align: left;
+            align-items: end;
+        }
+
+        .column1 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 10%;
+        }
+
+        .column2 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 12%;
+        }
+
+        .column3 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 5%;
+        }
+
+        .column4 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 30%;
+        }
+
+        .column4 p {
+            font-size: smaller;
+            margin-bottom: -10px;
+        }
+
+        .column5 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 10%;
+        }
+
+        .column6 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 10%;
+        }
+
+        .column7 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+        }
+
+        .column8 {
+            padding-left: 10px;
+            /* height: 20vh; */
+            width: 8%;
+            vertical-align: bottom;
+        }
+
+        .column9 {
+            height: 100%;
+            padding: 5px;
+            width: 5%;
+        }
+
+        .column9 button {
+            width: 100%;
+            height: 50%;
+        }
+
+        .head_close_all {
+            height: 100%;
+            padding: 5px;
+            width: 5%;
+        }
+
+        .head_close_all button {
+            width: 100%;
+            height: 100%;
+        }
+
+        nav {
+            float: left;
+            width: 20%;
+            height: 90vh;
+            background-color: #f4f4f4;
+            padding: 2px;
+            overflow-y: scroll;
+        }
+
+        nav p {
+            text-align: center;
+            background-color: #333;
+            background-color: peru;
+            padding: 5px;
+            margin: 0;
+        }
+
+        .navigator_btns {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* height: 200px; */
+        }
+
+        .navigator_btns_row1 {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            background-color: green;
+        }
+
+        .navigator_btns_row1 button {
+            width: 50%;
+        }
+
+        .navigator_btns_row2 {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            background-color: lightgreen;
+        }
+
+        .navigator_btns_row2 button {
+            width: 50%;
+        }
+
+        .navigator_other_btns {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            background-color: navajowhite;
+            width: 100%;
+        }
+
+        .record_links {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding-left: 20px;
+        }
+
+        .record_links a {
+            font-weight: bolder;
+            color: black;
+        }
+
+        .main-flex {
+            display: flex;
+            width: 100%;
+            /* padding: 20px; */
+        }
+
+        .main-column {
+            width: 50%;
+            background-color: lightgray;
+            padding: 2px;
+            height: 90vh;
+            overflow-y: scroll;
+
+        }
+
+        .main-left-header_row1 {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            color: white;
+            margin: 0;
+            padding: 2px 10px;
+        }
+
+        .main-left-header_row1 p {
+            margin: 5px 0;
+        }
+
+        .main-left-header_row2 {
+            display: flex;
+            justify-content: left;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 2px 10px;
+        }
+
+        .main-left-header_row2 p {
+            margin: 5px 0;
+        }
+
+        .main-left-header_row2 div {
+            display: flex;
+            margin-left: auto;
+            justify-content: right;
+        }
+
+        .main-left-progressnote-record {
+            background-color: #f4f4f4;
+            padding: 10px;
+            padding-top: 0;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0px;
+            margin-bottom: 0;
+        }
+
+        .main-left-progressnote-record-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: lightblue;
+            color: black;
+            padding: 2px 10px;
+        }
+
+        .main-left-progressnote-record-header p {
+            margin: 5px 0;
+            font-weight: bolder;
+        }
+
+        .main-left-progressnote-record-header-row2 {
+            text-align: left;
+            background-color: lightblue;
+            color: black;
+            margin: 0;
+            padding-left: 50px;
+        }
+
+        .main-left-progressnote-record-header-row2 p {
+            margin: 0;
+            font-weight: bolder;
+        }
+
+        .progress-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .progress-table th {
+            background-color: rgb(217, 243, 251);
+            color: black;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+            justify-content: left;
+
+        }
+
+        .progress-table th:nth-child(1) {
+            width: 10%;
+            background-color: rgb(217, 243, 251);
+            text-align: right;
+        }
+
+        .progress-table td:nth-child(1) {
+            width: 10%;
+            background-color: rgb(217, 243, 251);
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .progress-table td:nth-child(2) {
+            text-align: left;
+            width: 75%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .main-left-prescription-record {
+            background-color: #b8fdf8;
+            padding: 10px;
+            padding-top: 0;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0px;
+            margin-bottom: 5px;
+        }
+
+        .main-left-prescription-record-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #b8fdf8;
+            color: black;
+            padding: 2px;
+        }
+
+        .main-left-prescription-record-header p {
+            margin: 5px 0;
+            font-weight: bolder;
+        }
+
+        .main-left-prescription-record-header-row2 {
+            text-align: left;
+            background-color: #b8fdf8;
+            color: black;
+            margin: 0;
+            padding-left: 50px;
+        }
+
+        .main-left-prescription-record-header-row2 p {
+            margin: 0;
+            font-weight: bolder;
+        }
+
+        .main-left-prescription-record-header-row3 {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e0fdfb;
+            color: black;
+            margin: 0;
+            padding-left: 100px;
+            padding-right: 10px;
+        }
+
+        .main-left-prescription-record-header-row3 p {
+            margin: 0;
+        }
+
+        .prescription-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0px;
+        }
+
+        .prescription-table th {
+            background-color: #dcfbf9;
+            color: black;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .prescription-table td:nth-child(1) {
+            width: 10%;
+            background-color: #dcfbf9;
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .prescription-table td:nth-child(2) {
+            text-align: left;
+            width: 75%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            border-right: 1px solid gray;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .prescription-table td:nth-child(3) {
+            width: 15%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            text-align: center;
+            padding-left: 5px;
+        }
+
+        .other-left-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0px;
+        }
+
+        .other-left-table th {
+            background-color: #dcfbf9;
+            color: black;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .other-left-table th:nth-child(4) {
+            width: 15%;
+            background-color: #dcfbf9;
+            text-align: center;
+        }
+
+        .other-left-table td:nth-child(1) {
+            width: 10%;
+            background-color: #dcfbf9;
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .other-left-table td:nth-child(2) {
+            text-align: left;
+            width: 20%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            border-right: 1px solid gray;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .other-left-table td:nth-child(3) {
+            width: 55%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        .other-left-table td:nth-child(4) {
+            width: 15%;
+            background-color: white;
+            border-bottom: 1px solid gray;
+            text-align: center;
+            padding-left: 5px;
+        }
+
+        .main-right-header_row1 {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            color: white;
+            margin: 0;
+            padding: 2px 10px;
+        }
+
+        .main-right-header_row1 p {
+            margin: 5px 0;
+        }
+
+        .main-right-header_row2 {
+            display: flex;
+            justify-content: left;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 2px 10px;
+        }
+
+        .main-right-header_row2 p {
+            margin: 5px 0;
+        }
+
+        .main-right-header_row2 div {
+            display: flex;
+            margin-left: auto;
+            justify-content: right;
+        }
+
+        .main-right-progressnote-record {
+            background-color: #f4f4f4;
+            padding: 10px;
+            padding-top: 0;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0px;
+            margin-bottom: 0;
+        }
+
+        .main-right-progressnote-record-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: lightblue;
+            color: black;
+            padding: 2px 10px;
+        }
+
+        .main-right-progressnote-record-header p {
+            margin: 5px 0;
+            font-weight: bolder;
+        }
+
+        .main-right-progressnote-record-header-row2 {
+            text-align: left;
+            background-color: lightblue;
+            color: black;
+            margin: 0;
+            padding-left: 50px;
+        }
+
+        .main-right-progressnote-record-header-row2 p {
+            margin: 0;
+            font-weight: bolder;
+        }
+
+        .SOAP-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .SOAP-table th {
+            background-color: rgb(217, 243, 251);
+            color: black;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+            justify-content: left;
+
+        }
+
+        .SOAP-table th:nth-child(1) {
+            width: 10%;
+            background-color: rgb(217, 243, 251);
+            text-align: right;
+        }
+
+        .SOAP-table td:nth-child(1) {
+            width: 10%;
+            background-color: rgb(217, 243, 251);
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .SOAP-table td:nth-child(2) {
+            text-align: left;
+            width: 75%;
+            background-color: white;
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .SOAP-table textarea {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            border: 1px solid gray;
+            resize: none;
+        }
+
+        .command-panel {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f4f4f4;
+            padding: 10px;
+        }
+
+        .command-panel button {
+            width: 45%;
+            height: 50px;
+        }
+
+        #skip_btn {
+            font-weight: bold;
+            font-size: large;
+            background-color: lightcyan;
+            color: black;
+        }
+
+        #open_answer_modal {
+            font-weight: bold;
+            font-size: large;
+            background-color: pink;
+            color: black;
+        }
+
+        .nav-right {
+            width: 15%;
+            background-color: #b3cffd;
+            padding: 2px;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .nav-right-btn-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            /* height: 200px; */
+        }
+
+        .nav-right-btn-box button {
+            width: 33%;
+        }
+
+        .doctor-name {
+            text-align: center;
+            background-color: #fff;
+            color: black;
+            margin: 4px;
+            padding: 2px 10px;
+        }
+
+        .doctor-name p {
+            margin: 0;
+        }
+
+        .clerk-btn-box {
+            margin: 2px;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+        }
+
+        .clerk-name {
+            justify-content: center;
+            background-color: white;
+            color: black;
+            margin: 4px;
+            padding: 5px;
+        }
+
+        .clerk-name p {
+            margin: 0;
+        }
+
+        .clerk-sub-btn-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            margin: 2px;
+        }
+
+        .clerk-type-btn-box-row-1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            margin: 2px;
+            margin-bottom: 0;
+        }
+
+        .clerk-type-btn-box-row-1 button {
+            width: 50%;
+            font-size: small;
+        }
+
+        .clerk-type-btn-box-row-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            margin: 2px;
+            margin-top: 0;
+        }
+
+        .clerk-type-btn-box-row-2 button {
+            width: 50%;
+            font-size: small;
+        }
+
+        .nav-right-others {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            margin: 4px;
+            padding-top: 10px;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .nav-right-others button {
+            margin: 2px;
+            padding: 5px;
+            font-size: medium;
+        }
+
+
+        /* モーダルウィンドウ */
+        #modalArea {
+            /* display: none; */
+            position: fixed;
+            z-index: 10;
+            /*サイトによってここの数値は調整 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .modalBg {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 30, 30, 0.9);
+        }
+
+        .modalWrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            max-width: 500px;
+            padding: 10px 30px;
+            background-color: #fff;
+        }
+
+        .closeModal {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            cursor: pointer;
+        }
+
+        .imageArea {
+            position: fixed;
+            z-index: 10;
+            /*サイトによってここの数値は調整 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-window-bar {
+            display: flex;
+            justify-content: space-between;
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            background-color: #333;
+            color: #fff;
+            clear: both;
+        }
+
+        .imageWrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            max-width: 500px;
+            padding: 10px 10px;
+            background-color: #fff;
+        }
+
+        .closeImage {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            cursor: pointer;
+        }
+
+        .imageWrapper img {
+            width: 100%;
+        }
+
+        .image-window-footer {
+            /* height: 30px; */
+            display: flex;
+            justify-content: right;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+        }
+
+        .progress-note {
+            float: left;
+            width: 25%;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        footer {
+            /* height: 30px; */
+            background-color: #333;
+            color: #fff;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="field-parent">
+        <div class="center-field">
+            <div class="header">
+                <div class="column1">
+                    <p>外来</p>
+                    <p>内科</p>
+                </div>
+                <div class="column2">
+                    <!-- <p>患者情報</p> -->
+                    <p>患者ID: 123456</p>
+                </div>
+                <div class="column3"></div>
+                <div class="column4">
+                    <p>やまだ　たろう</p>
+                    <h3>山田　太郎</h3>
+                </div>
+                <div class="column5">
+                    <!-- <p>性別: 男</p> -->
+                    <p>69歳6ヶ月</p>
+                </div>
+                <div class="column6">
+                    <p>O型 Rh(+)</p>
+                </div>
+                <div class="column7">
+                    <p>155.0cm</p>
+                </div>
+                <div class="column8">
+                    <p>63.000kg</p>
+                </div>
+                <div class="column9">
+                    <button>Prof</button>
+                    <button>病名</button>
+                </div>
+                <div class="head_close_all">
+                    <button>カルテ閉じる</button>
+                </div>
+            </div>
+            <div class="main-flex">
+                <nav>
+                    <p>ナビゲータ</p>
+                    <div class="navigator_btns">
+                        <div class="navigator_btns_row1">
+                            <button>ナビゲータ</button>
+                            <button>ヒストリカル</button>
+                        </div>
+                        <div class="navigator_btns_row2">
+                            <button>ブラウザ</button>
+                            <button>マルチビュー</button>
+                        </div>
+                    </div>
+                    <div class="navigator_other_btns">
+                        <button>A</button>
+                        <button>B</button>
+                        <button>C</button>
+                    </div>
+                    <!-- ナビゲーションメニューのリンクなどをここに追加 -->
+                    <div class="record_links">
+                        <a>カルテ1</a>
+                        <a>カルテ2</a>
+                        <a>カルテ3</a>
+                        <a>カルテ4</a>
+                        <a>血液検査結果</a>
+                    </div>
+                </nav>
+                <div class="main-column">
+                    <div class="main-left-header_row1">
+                        <p>全科カルテ</p>
+                        <p>2024/05/13(月)</p>
+                        <button>閉</button>
+                    </div>
+                    <div class="main-left-header_row2">
+                        <button>全て展開</button>
+                        <button>全てたたむ</button>
+                        <div class="main-left-header-btns">
+                            <button>A</button>
+                            <button>B</button>
+                            <button>C</button>
+                        </div>
+                    </div>
+                    <div class="main-left-progressnote-record">
+                        <div class="main-left-progressnote-record-header">
+                            <div style="display: flex;">
+                                <button>開</button>
+                                <p>【プログレスノート】</p>
+                            </div>
+                            <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                        </div>
+                        <div class="main-left-progressnote-record-header-row2">
+                            <p>2024/05/13(月) 09:00</p>
+                        </div>
+                        <table class="progress-table">
+                            <tr>
+                                <th>依頼</th>
+                                <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                <th>総合　本</th>
+                            </tr>
+                            <tr>
+                                <td>(S)</td>
+                                <td colspan="2">著変なし</td> <!-- colspan="2"で2列結合 -->
+                            </tr>
+                            <tr>
+                                <td>(O)</td>
+                                <td colspan="2">BS 112<br>血圧 142/82<br>HbA1c 6.1%</td>
+                            </tr>
+                        </table>
+
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>【外来院外処方】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <div class="main-left-prescription-record-header-row2">
+                                <p>2024/05/13(月) 09:00</p>
+                            </div>
+                            <table class="prescription-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>レニペース錠5</td>
+                                    <td>1錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>アタラートCR錠40mg</td>
+                                    <td>1錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日1回朝食後</td>
+                                    <td>14日分</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>ムコスタ錠100</td>
+                                    <td>3錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日3回食後</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>ヒューマリンR注U-100</td>
+                                    <td>3Ｖ</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日3回</td>
+                                    <td>14日分</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>朝食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>昼食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>夕食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>後発薬品への変更可</td>
+                                    <td></td>
+                                </tr>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>　【検体検査】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <table class="other-left-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th colspan="2">2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>末梢液</td>
+                                    <td colspan="2">・GOT ・GPT ・BUN ・Cr ・Na ・K ・Cl ・Alb</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>関節液</td>
+                                    <td colspan="2">・CBC</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>骨髄液</td>
+                                    <td colspan="2">・血糖　・Hb分画</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>　【再診予約・他科診】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <div class="main-left-prescription-record-header-row2">
+                                <p>2024/05/13(月) 09:00</p>
+                            </div>
+                            <table class="other-left-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th colspan="2">2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>診察グループ</td>
+                                    <td colspan="2">内科</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>予約枠名</td>
+                                    <td colspan="2">富士通　清美</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-column">
+                    <div class="main-right-header_row1">
+                        <p>エディタ(新規)</p>
+                        <p>山田　太郎(123456)</p>
+                        <button>閉</button>
+                    </div>
+                    <div class="main-right-header_row2">
+                        <button>全て展開</button>
+                        <button>全てたたむ</button>
+                        <div class="main-right-header-btns">
+                            <button>A</button>
+                            <button>B</button>
+                            <button>C</button>
+                        </div>
+                    </div>
+                    <div class="main-right-progressnote-record">
+                        <div class="main-right-progressnote-record-header">
+                            <div style="display: flex;">
+                                <button>開</button>
+                                <p>【プログレスノート】</p>
+                            </div>
+                            <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                        </div>
+                        <div class="main-right-progressnote-record-header-row2">
+                            <p>2024/05/13(月) 09:00</p>
+                        </div>
+                        <table class="SOAP-table">
+                            <tr>
+                                <th>依頼</th>
+                                <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                <th>総合　本</th>
+                            </tr>
+                            <tr>
+                                <td>#</td>
+                                <td colspan="2"><textarea name="progress_sharp" id="progress_sharp" cols="70" rows="5"
+                                        placeholder="ここに入力"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>(S)</td>
+                                <td colspan="2"><textarea name="progress_subject" id="progress_subject" cols="70"
+                                        rows="5" placeholder="ここに入力"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>(O)</td>
+                                <td colspan="2"><textarea name="progress_object" id="progress_object" cols="70" rows="5"
+                                        placeholder="ここに入力"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>(A)</td>
+                                <td colspan="2"><textarea name="progress_assessment" id="progress_assessment" cols="70"
+                                        rows="5" placeholder="ここに入力"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>(P)</td>
+                                <td colspan="2"><textarea name="progress_plan" id="progress_plan" cols="70"
+                                        rows="5">ここに入力</textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="command-panel">
+                        <button id="skip_btn">この問題をスキップ</button>
+                        <button id="open_answer_modal" onclick="openAnswerModal()">解答を採点する</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="nav-right">
+            <!-- ここに右ナビゲーション追加 -->
+            <div class="nav-right-btn-box">
+                <button>診断</button>
+                <button>処置</button>
+                <button>処方</button>
+            </div>
+            <div class="doctor-name">
+                <p>富士通 清美</p>
+            </div>
+            <div class="doctor-name">
+                <p>富士通 清美</p>
+            </div>
+            <div class="doctor-name">
+                <p>富士通 清美</p>
+            </div>
+            <div class="clerk-btn-box">
+                <button>受付一覧</button>
+                <button>開</button>
+            </div>
+            <div class="clerk-name">
+                <p>次の患者１</p>
+                <p>次の患者２</p>
+                <p>次の患者３</p>
+            </div>
+            <div class="clerk-sub-btn-box">
+                <button>A</button>
+                <button>B</button>
+                <button>C</button>
+            </div>
+            <div class="clerk-type-btn-box-row-1">
+                <button>外来</button>
+                <button>カルテ記載</button>
+            </div>
+            <div class="clerk-type-btn-box-row-2">
+                <button>入院</button>
+                <button>便利機能</button>
+            </div>
+            <div class="nav-right-others">
+                <button>セット展開</button>
+                <button>文書切り替え</button>
+                <button>外来処方</button>
+                <button>前回処方</button>
+                <button>再診予約</button>
+                <button>検体検査</button>
+                <button style="background-color: rgb(254, 200, 200);" onclick="openImageModal()">
+                    一般撮影
+                </button>
+                <button>CT検査</button>
+                <button>外来注射</button>
+                <button>外来処置</button>
+                <button>入院申込オーダ</button>
+                <button>予約カレンダ</button>
+                <button>指導料</button>
+                <button>リハビリ処方</button>
+                <button>画像連携</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- 解答採点中のmodal windowを用意する -->
+    <section id="modalArea" class="modalArea" style="display: none;">
+        <div id="modalBg" class="modalBg"></div>
+        <div class="modalWrapper">
+            <div class="modalContents">
+                <h1>現在解答採点中です...</h1>
+                <p>解答採点には数分かかリます。</p>
+                <button onclick="closeAnswerModal()">解答をやり直す</button>
+            </div>
+            <div id="closeModal" class="closeModal">
+                <button onclick="closeAnswerModal()">閉じる</button>
+
+            </div>
+        </div>
+    </section>
+    <!-- 画像を見るための別ウィンドウ -->
+    <section id="imageArea" class="imageArea" style="display: block;">
+        <div id="modalBg" class="modalBg"></div>
+        <div class="imageWrapper">
+            <div class="imageContents">
+                <div class="image-window-bar">
+                    <h1>内視鏡所見</h1>
+                    <button onclick="closeImageModal()">閉じる</button>
+                </div>
+                <!-- ここにスクロールパラパラ漫画 src:https://lifeinfo-navi.com/p=5303  -->
+                <img id="imagePlace" src="./img/1.png" alt="内視鏡所見" />
+                <!-- <img id="imagePlace" src="https://lifeinfo-navi.com/wp-content/uploads/2022/02/1.png"/> -->
+                <p></p>
+                <!-- <img src="./img/8.png" alt="内視鏡所見"> -->
+                <div class="image-window-footer"><button>貼り付け</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

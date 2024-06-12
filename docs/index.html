@@ -4,745 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge" /> -->
     <title>電子カルテ</title>
-    <script type="text/javascript">
-        function openAnswerModal() {
-            document.getElementById('modalArea').style.display = 'block';
-        }
-        function closeAnswerModal() {
-            document.getElementById('modalArea').style.display = 'none';
-        }
-        // $(function () {
-        //   $('#openModal').click(function(){
-        //       $('#modalArea').fadeIn();
-        //   });
-        //   $('#closeModal , #modalBg').click(function(){
-        //     $('#modalArea').fadeOut();
-        //   });
-        // });
-    </script>
-    <style>
-        /* CSS スタイルはここに記述します */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        body button {
-            /* レトロな色のボタンデザイン */
-            font-size: small;
-            background-color: #fffffff3;
-            border: 1px solid #333;
-            border-radius: 1px;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .field-parent {
-            /* 作成後解除する */
-            display: flex;
-            width: 100%;
-            background-color: #f4f4f4;
-        }
-
-        .center-field {
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-        }
-
-        .header {
-            background-color: #222;
-            color: #fff;
-            display: flex;
-            padding: 0px;
-            height: 80px;
-            font-size: small;
-            text-align: left;
-            align-items: end;
-        }
-
-        .column1 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 10%;
-        }
-
-        .column2 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 12%;
-        }
-
-        .column3 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 5%;
-        }
-
-        .column4 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 30%;
-        }
-
-        .column4 p {
-            font-size: smaller;
-            margin-bottom: -10px;
-        }
-
-        .column5 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 10%;
-        }
-
-        .column6 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 10%;
-        }
-
-        .column7 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 8%;
-        }
-
-        .column8 {
-            padding-left: 10px;
-            /* height: 20vh; */
-            width: 8%;
-            vertical-align: bottom;
-        }
-
-        .column9 {
-            height: 100%;
-            padding: 5px;
-            width: 5%;
-        }
-
-        .column9 button {
-            width: 100%;
-            height: 50%;
-        }
-
-        .head_close_all {
-            height: 100%;
-            padding: 5px;
-            width: 5%;
-        }
-
-        .head_close_all button {
-            width: 100%;
-            height: 100%;
-        }
-
-        nav {
-            float: left;
-            width: 20%;
-            height: 90vh;
-            background-color: #f4f4f4;
-            padding: 2px;
-            overflow-y: scroll;
-        }
-
-        nav p {
-            text-align: center;
-            background-color: #333;
-            background-color: peru;
-            padding: 5px;
-            margin: 0;
-        }
-
-        .navigator_btns {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* height: 200px; */
-        }
-
-        .navigator_btns_row1 {
-            height: 30px;
-            display: flex;
-            justify-content: space-between;
-            background-color: green;
-        }
-
-        .navigator_btns_row1 button {
-            width: 50%;
-        }
-
-        .navigator_btns_row2 {
-            height: 30px;
-            display: flex;
-            justify-content: space-between;
-            background-color: lightgreen;
-        }
-
-        .navigator_btns_row2 button {
-            width: 50%;
-        }
-
-        .navigator_other_btns {
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            background-color: navajowhite;
-            width: 100%;
-        }
-
-        .record_links {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            padding-left: 20px;
-        }
-
-        .record_links a {
-            font-weight: bolder;
-            color: black;
-        }
-
-        .main-flex {
-            display: flex;
-            width: 100%;
-            /* padding: 20px; */
-        }
-
-        .main-column {
-            width: 50%;
-            background-color: lightgray;
-            padding: 2px;
-            height: 90vh;
-            overflow-y: scroll;
-
-        }
-
-        .main-left-header_row1 {
-            display: flex;
-            justify-content: space-between;
-            background-color: #333;
-            color: white;
-            margin: 0;
-            padding: 2px 10px;
-        }
-
-        .main-left-header_row1 p {
-            margin: 5px 0;
-        }
-
-        .main-left-header_row2 {
-            display: flex;
-            justify-content: left;
-            background-color: #222;
-            color: white;
-            margin: 0;
-            padding: 2px 10px;
-        }
-
-        .main-left-header_row2 p {
-            margin: 5px 0;
-        }
-
-        .main-left-header_row2 div {
-            display: flex;
-            margin-left: auto;
-            justify-content: right;
-        }
-
-        .main-left-progressnote-record {
-            background-color: #f4f4f4;
-            padding: 10px;
-            padding-top: 0;
-            margin-top: 0;
-            margin-left: 0;
-            margin-right: 0px;
-            margin-bottom: 0;
-        }
-
-        .main-left-progressnote-record-header {
-            display: flex;
-            justify-content: space-between;
-            background-color: lightblue;
-            color: black;
-            padding: 2px 10px;
-        }
-
-        .main-left-progressnote-record-header p {
-            margin: 5px 0;
-            font-weight: bolder;
-        }
-
-        .main-left-progressnote-record-header-row2 {
-            text-align: left;
-            background-color: lightblue;
-            color: black;
-            margin: 0;
-            padding-left: 50px;
-        }
-
-        .main-left-progressnote-record-header-row2 p {
-            margin: 0;
-            font-weight: bolder;
-        }
-
-        .progress-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-        }
-
-        .progress-table th {
-            background-color: rgb(217, 243, 251);
-            color: black;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-            justify-content: left;
-
-        }
-
-        .progress-table th:nth-child(1) {
-            width: 10%;
-            background-color: rgb(217, 243, 251);
-            text-align: right;
-        }
-
-        .progress-table td:nth-child(1) {
-            width: 10%;
-            background-color: rgb(217, 243, 251);
-            text-align: right;
-            padding-right: 5px;
-        }
-
-        .progress-table td:nth-child(2) {
-            text-align: left;
-            width: 75%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            padding-right: 5px;
-            padding-left: 5px;
-        }
-
-        .main-left-prescription-record {
-            background-color: #b8fdf8;
-            padding: 10px;
-            padding-top: 0;
-            margin-top: 0;
-            margin-left: 0;
-            margin-right: 0px;
-            margin-bottom: 5px;
-        }
-
-        .main-left-prescription-record-header {
-            display: flex;
-            justify-content: space-between;
-            background-color: #b8fdf8;
-            color: black;
-            padding: 2px;
-        }
-
-        .main-left-prescription-record-header p {
-            margin: 5px 0;
-            font-weight: bolder;
-        }
-
-        .main-left-prescription-record-header-row2 {
-            text-align: left;
-            background-color: #b8fdf8;
-            color: black;
-            margin: 0;
-            padding-left: 50px;
-        }
-
-        .main-left-prescription-record-header-row2 p {
-            margin: 0;
-            font-weight: bolder;
-        }
-
-        .main-left-prescription-record-header-row3 {
-            display: flex;
-            justify-content: space-between;
-            background-color: #e0fdfb;
-            color: black;
-            margin: 0;
-            padding-left: 100px;
-            padding-right: 10px;
-        }
-
-        .main-left-prescription-record-header-row3 p {
-            margin: 0;
-        }
-
-        .prescription-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 0px;
-        }
-
-        .prescription-table th {
-            background-color: #dcfbf9;
-            color: black;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-        }
-
-        .prescription-table td:nth-child(1) {
-            width: 10%;
-            background-color: #dcfbf9;
-            text-align: right;
-            padding-right: 5px;
-        }
-
-        .prescription-table td:nth-child(2) {
-            text-align: left;
-            width: 75%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            border-right: 1px solid gray;
-            padding-right: 5px;
-            padding-left: 5px;
-        }
-
-        .prescription-table td:nth-child(3) {
-            width: 15%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            text-align: center;
-            padding-left: 5px;
-        }
-
-        .other-left-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 0px;
-        }
-
-        .other-left-table th {
-            background-color: #dcfbf9;
-            color: black;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-        }
-
-        .other-left-table th:nth-child(4) {
-            width: 15%;
-            background-color: #dcfbf9;
-            text-align: center;
-        }
-
-        .other-left-table td:nth-child(1) {
-            width: 10%;
-            background-color: #dcfbf9;
-            text-align: right;
-            padding-right: 5px;
-        }
-
-        .other-left-table td:nth-child(2) {
-            text-align: left;
-            width: 20%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            border-right: 1px solid gray;
-            padding-right: 5px;
-            padding-left: 5px;
-        }
-
-        .other-left-table td:nth-child(3) {
-            width: 55%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            text-align: left;
-            padding-left: 5px;
-        }
-
-        .other-left-table td:nth-child(4) {
-            width: 15%;
-            background-color: white;
-            border-bottom: 1px solid gray;
-            text-align: center;
-            padding-left: 5px;
-        }
-
-        .main-right-header_row1 {
-            display: flex;
-            justify-content: space-between;
-            background-color: #333;
-            color: white;
-            margin: 0;
-            padding: 2px 10px;
-        }
-
-        .main-right-header_row1 p {
-            margin: 5px 0;
-        }
-
-        .main-right-header_row2 {
-            display: flex;
-            justify-content: left;
-            background-color: #222;
-            color: white;
-            margin: 0;
-            padding: 2px 10px;
-        }
-
-        .main-right-header_row2 p {
-            margin: 5px 0;
-        }
-
-        .main-right-header_row2 div {
-            display: flex;
-            margin-left: auto;
-            justify-content: right;
-        }
-
-        .main-right-progressnote-record {
-            background-color: #f4f4f4;
-            padding: 10px;
-            padding-top: 0;
-            margin-top: 0;
-            margin-left: 0;
-            margin-right: 0px;
-            margin-bottom: 0;
-        }
-
-        .main-right-progressnote-record-header {
-            display: flex;
-            justify-content: space-between;
-            background-color: lightblue;
-            color: black;
-            padding: 2px 10px;
-        }
-
-        .main-right-progressnote-record-header p {
-            margin: 5px 0;
-            font-weight: bolder;
-        }
-
-        .main-right-progressnote-record-header-row2 {
-            text-align: left;
-            background-color: lightblue;
-            color: black;
-            margin: 0;
-            padding-left: 50px;
-        }
-
-        .main-right-progressnote-record-header-row2 p {
-            margin: 0;
-            font-weight: bolder;
-        }
-
-        .SOAP-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-        }
-
-        .SOAP-table th {
-            background-color: rgb(217, 243, 251);
-            color: black;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-            justify-content: left;
-
-        }
-
-        .SOAP-table th:nth-child(1) {
-            width: 10%;
-            background-color: rgb(217, 243, 251);
-            text-align: right;
-        }
-
-        .SOAP-table td:nth-child(1) {
-            width: 10%;
-            background-color: rgb(217, 243, 251);
-            text-align: right;
-            padding-right: 5px;
-        }
-
-        .SOAP-table td:nth-child(2) {
-            text-align: left;
-            width: 75%;
-            background-color: white;
-            padding-right: 0px;
-            padding-left: 0px;
-        }
-
-        .SOAP-table textarea {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            border: 1px solid gray;
-            resize: none;
-        }
-
-        .command-panel {
-            display: flex;
-            justify-content: space-between;
-            background-color: #f4f4f4;
-            padding: 10px;
-        }
-
-        .command-panel button {
-            width: 45%;
-            height: 50px;
-        }
-
-        #skip_btn {
-            font-weight: bold;
-            font-size: large;
-            background-color: lightcyan;
-            color: black;
-        }
-
-        #open_answer_modal {
-            font-weight: bold;
-            font-size: large;
-            background-color: pink;
-            color: black;
-        }
-
-        .nav-right {
-            width: 15%;
-            background-color: #b3cffd;
-            padding: 2px;
-            height: 100vh;
-            overflow-y: scroll;
-        }
-        .nav-right-btn-box {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            /* height: 200px; */
-        }
-        .nav-right-btn-box button {
-            width: 33%;
-        }
-        .doctor-name {
-            text-align: center;
-            background-color: #fff;
-            color: black;
-            margin: 4px;
-            padding: 2px 10px;
-        }
-        .doctor-name p {
-            margin: 0;
-        }
-        .clerk-btn-box {
-            margin: 2px;
-            padding-left: 10px;
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-        }
-        .clerk-name {
-            justify-content: center;
-            background-color: white;
-            color: black;
-            margin: 4px;
-            padding: 5px;
-        }
-        .clerk-name p {
-            margin: 0;
-        }
-        .clerk-sub-btn-box {
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            margin: 2px;
-        }
-        .clerk-type-btn-box-row-1 {
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            margin: 2px;
-            margin-bottom: 0;
-        }
-        .clerk-type-btn-box-row-1 button {
-            width: 50%;
-            font-size: small;
-        }
-        .clerk-type-btn-box-row-2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            margin: 2px;
-            margin-top: 0;
-        }
-        .clerk-type-btn-box-row-2 button {
-            width: 50%;
-            font-size: small;
-        }
-        .nav-right-others {
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            margin: 4px;
-            padding-top: 10px;
-            padding-left: 3px;
-            padding-right: 3px;
-        }
-        .nav-right-others button {
-            margin: 2px;
-            padding: 5px;
-            font-size: medium;
-        }
-
-
-        /* モーダルウィンドウ */
-        #modalArea {
-            /* display: none; */
-            position: fixed;
-            z-index: 10;
-            /*サイトによってここの数値は調整 */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .modalBg {
-            width: 100%;
-            height: 100%;
-            background-color: rgba(30, 30, 30, 0.9);
-        }
-
-        .modalWrapper {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70%;
-            max-width: 500px;
-            padding: 10px 30px;
-            background-color: #fff;
-        }
-
-        .closeModal {
-            position: absolute;
-            top: 0.5rem;
-            right: 1rem;
-            cursor: pointer;
-        }
-
-        .progress-note {
-            float: left;
-            width: 25%;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
-        footer {
-            /* height: 30px; */
-            background-color: #333;
-            color: #fff;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 20px;
-            clear: both;
-        }
-    </style>
+    <!-- docs/index.js　からJSスクリプトを導入 -->
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
@@ -807,7 +73,9 @@
                         <a>カルテ2</a>
                         <a>カルテ3</a>
                         <a>カルテ4</a>
-                        <a>血液検査結果</a>
+                        <!-- <a>血液検査結果</a> -->
+                        <a onclick="openBloodCultureModal()">血液培養結果</a>
+
                     </div>
                 </nav>
                 <div class="main-column">
@@ -1049,8 +317,16 @@
                             </tr>
                             <tr>
                                 <td>(O)</td>
-                                <td colspan="2"><textarea name="progress_object" id="progress_object" cols="70" rows="5"
-                                        placeholder="ここに入力"></textarea></td>
+                                <td colspan="2">
+                                    <div id="img-paste-box">
+                                        <!-- <div class="pasted-img-box">
+                                            <img src="./img/1.png" alt="画像1">
+                                            <button onclick="deleteImage()">削除</button>
+                                        </div> -->
+                                    </div>
+                                    <textarea name="progress_object" id="progress_object" cols="70" rows="5"
+                                        placeholder="ここに入力"></textarea>
+                                </td>
                             </tr>
                             <tr>
                                 <td>(A)</td>
@@ -1086,10 +362,10 @@
                 <p>富士通 清美</p>
             </div>
             <div class="doctor-name">
-                <p>富士通 清美</p>
+                <p></p>
             </div>
             <div class="doctor-name">
-                <p>富士通 清美</p>
+                <p></p>
             </div>
             <div class="clerk-btn-box">
                 <button>受付一覧</button>
@@ -1120,7 +396,7 @@
                 <button>前回処方</button>
                 <button>再診予約</button>
                 <button>検体検査</button>
-                <button style="background-color: rgb(254, 200, 200);">
+                <button style="background-color: rgb(254, 200, 200);" onclick="openImageModal()">
                     一般撮影
                 </button>
                 <button>CT検査</button>
@@ -1150,6 +426,99 @@
             </div>
         </div>
     </section>
+    <!-- 画像を見るための別ウィンドウ -->
+    <section id="imageArea" class="imageArea" style="display: none;">
+        <div id="modalBg" class="modalBg" onclick="closeImageModal()"></div>
+        <div class="imageWrapper">
+            <div class="imageContents">
+                <div class="image-window-bar">
+                    <h1>内視鏡所見</h1>
+                    <button onclick="closeImageModal()">閉じる</button>
+                </div>
+                <!-- ここにスクロールパラパラ漫画 src:https://lifeinfo-navi.com/p=5303  -->
+                <img id="imagePlace" src="./img/1.png" alt="内視鏡所見" />
+                <!-- <img id="imagePlace" src="https://lifeinfo-navi.com/wp-content/uploads/2022/02/1.png"/> -->
+                <p></p>
+                <!-- <img src="./img/8.png" alt="内視鏡所見"> -->
+                <div class="image-window-footer">
+                    <button id="backImg" onclick="backImage()">前</button>
+                    <p id="imgNum">1/8</p>
+                    <button id="copyImg" onclick="copyImage()">貼り付け</button>
+                    <button id="nextImg" onclick="nextImage()">次</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 血液培養結果詳細(テーブル形式)を見るための別ウィンドウ -->
+    <section id="bloodCultureArea" class="imageArea" style="display: none;">
+        <div id="modalBg" class="modalBg" onclick="closeBloodCultureModal()"></div>
+        <div class="imageWrapper">
+            <div class="imageContents">
+                <div class="image-window-bar">
+                    <h1>血液培養結果</h1>
+                    <button onclick="closeBloodCultureModal()">閉じる</button>
+                </div>
+                <table class="blood-culture-table">
+                    <tr>
+                        <th>採取日</th>
+                        <th>検査日</th>
+                        <th>GOT</th>
+                        <th>GPT</th>
+                        <th>BUN</th>
+                        <th>Cr</th>
+                        <th>Na</th>
+                    </tr>
+                    <tr>
+                        <td>2024/05/13</td>
+                        <td>2024/05/13</td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>10</td>
+                        <td>0.8</td>
+                        <td>140</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/14</td>
+                        <td>2024/05/14</td>
+                        <td>25</td>
+                        <td>20</td>
+                        <td>12</td>
+                        <td>0.9</td>
+                        <td>142</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/15</td>
+                        <td>2024/05/15</td>
+                        <td>30</td>
+                        <td>25</td>
+                        <td>15</td>
+                        <td>1.0</td>
+                        <td>145</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/16</td>
+                        <td>2024/05/16</td>
+                        <td>35</td>
+                        <td>30</td>
+                        <td>18</td>
+                        <td>1.1</td>
+                        <td>148</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/17</td>
+                        <td>2024/05/17</td>
+                        <td>40</td>
+                        <td>35</td>
+                        <td>20</td>
+                        <td>1.2</td>
+                        <td>150</td>
+                    </tr>
+                </table>
+                <div class="blood-culture-window-footer">
+                    <button id="copyBloodCulture" onclick="copyBloodCulture()">結果を全て貼り付け</button>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

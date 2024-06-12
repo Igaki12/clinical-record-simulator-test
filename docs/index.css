@@ -1,0 +1,841 @@
+     /* CSS スタイルはここに記述します */
+     body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body button {
+        /* レトロな色のボタンデザイン */
+        font-size: small;
+        background-color: #fffffff3;
+        border: 1px solid #333;
+        border-radius: 1px;
+        color: #333;
+        cursor: pointer;
+    }
+
+    .field-parent {
+        /* 作成後解除する */
+        display: flex;
+        width: 100%;
+        background-color: #f4f4f4;
+    }
+
+    .center-field {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .header {
+        background-color: #222;
+        color: #fff;
+        display: flex;
+        padding: 0px;
+        height: 80px;
+        font-size: small;
+        text-align: left;
+        align-items: end;
+    }
+
+    .column1 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 10%;
+    }
+
+    .column2 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 12%;
+    }
+
+    .column3 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 5%;
+    }
+
+    .column4 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 30%;
+    }
+
+    .column4 p {
+        font-size: smaller;
+        margin-bottom: -10px;
+    }
+
+    .column5 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 10%;
+    }
+
+    .column6 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 10%;
+    }
+
+    .column7 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 8%;
+    }
+
+    .column8 {
+        padding-left: 10px;
+        /* height: 20vh; */
+        width: 8%;
+        vertical-align: bottom;
+    }
+
+    .column9 {
+        height: 100%;
+        padding: 5px;
+        width: 5%;
+    }
+
+    .column9 button {
+        width: 100%;
+        height: 50%;
+    }
+
+    .head_close_all {
+        height: 100%;
+        padding: 5px;
+        width: 5%;
+    }
+
+    .head_close_all button {
+        width: 100%;
+        height: 100%;
+    }
+
+    nav {
+        float: left;
+        width: 20%;
+        height: 90vh;
+        background-color: #f4f4f4;
+        padding: 2px;
+        overflow-y: scroll;
+    }
+
+    nav p {
+        text-align: center;
+        background-color: #333;
+        background-color: peru;
+        padding: 5px;
+        margin: 0;
+    }
+
+    .navigator_btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* height: 200px; */
+    }
+
+    .navigator_btns_row1 {
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        background-color: green;
+    }
+
+    .navigator_btns_row1 button {
+        width: 50%;
+    }
+
+    .navigator_btns_row2 {
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        background-color: lightgreen;
+    }
+
+    .navigator_btns_row2 button {
+        width: 50%;
+    }
+
+    .navigator_other_btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        background-color: navajowhite;
+        width: 100%;
+    }
+
+    .record_links {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding-left: 20px;
+    }
+
+    .record_links a {
+        font-weight: bolder;
+        color: black;
+        text-decoration: none;
+        /* マウスカーソルがクリックできるような形に変形 */
+        cursor: pointer;
+    }
+
+    .main-flex {
+        display: flex;
+        width: 100%;
+        /* padding: 20px; */
+    }
+
+    .main-column {
+        width: 50%;
+        background-color: lightgray;
+        padding: 2px;
+        height: 90vh;
+        overflow-y: scroll;
+
+    }
+
+    .main-left-header_row1 {
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+        color: white;
+        margin: 0;
+        padding: 2px 10px;
+    }
+
+    .main-left-header_row1 p {
+        margin: 5px 0;
+    }
+
+    .main-left-header_row2 {
+        display: flex;
+        justify-content: left;
+        background-color: #222;
+        color: white;
+        margin: 0;
+        padding: 2px 10px;
+    }
+
+    .main-left-header_row2 p {
+        margin: 5px 0;
+    }
+
+    .main-left-header_row2 div {
+        display: flex;
+        margin-left: auto;
+        justify-content: right;
+    }
+
+    .main-left-progressnote-record {
+        background-color: #f4f4f4;
+        padding: 10px;
+        padding-top: 0;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0px;
+        margin-bottom: 0;
+    }
+
+    .main-left-progressnote-record-header {
+        display: flex;
+        justify-content: space-between;
+        background-color: lightblue;
+        color: black;
+        padding: 2px 10px;
+    }
+
+    .main-left-progressnote-record-header p {
+        margin: 5px 0;
+        font-weight: bolder;
+    }
+
+    .main-left-progressnote-record-header-row2 {
+        text-align: left;
+        background-color: lightblue;
+        color: black;
+        margin: 0;
+        padding-left: 50px;
+    }
+
+    .main-left-progressnote-record-header-row2 p {
+        margin: 0;
+        font-weight: bolder;
+    }
+
+    .progress-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .progress-table th {
+        background-color: rgb(217, 243, 251);
+        color: black;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+        justify-content: left;
+
+    }
+
+    .progress-table th:nth-child(1) {
+        width: 10%;
+        background-color: rgb(217, 243, 251);
+        text-align: right;
+    }
+
+    .progress-table td:nth-child(1) {
+        width: 10%;
+        background-color: rgb(217, 243, 251);
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    .progress-table td:nth-child(2) {
+        text-align: left;
+        width: 75%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .main-left-prescription-record {
+        background-color: #b8fdf8;
+        padding: 10px;
+        padding-top: 0;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0px;
+        margin-bottom: 5px;
+    }
+
+    .main-left-prescription-record-header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #b8fdf8;
+        color: black;
+        padding: 2px;
+    }
+
+    .main-left-prescription-record-header p {
+        margin: 5px 0;
+        font-weight: bolder;
+    }
+
+    .main-left-prescription-record-header-row2 {
+        text-align: left;
+        background-color: #b8fdf8;
+        color: black;
+        margin: 0;
+        padding-left: 50px;
+    }
+
+    .main-left-prescription-record-header-row2 p {
+        margin: 0;
+        font-weight: bolder;
+    }
+
+    .main-left-prescription-record-header-row3 {
+        display: flex;
+        justify-content: space-between;
+        background-color: #e0fdfb;
+        color: black;
+        margin: 0;
+        padding-left: 100px;
+        padding-right: 10px;
+    }
+
+    .main-left-prescription-record-header-row3 p {
+        margin: 0;
+    }
+
+    .prescription-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0px;
+    }
+
+    .prescription-table th {
+        background-color: #dcfbf9;
+        color: black;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+    }
+
+    .prescription-table td:nth-child(1) {
+        width: 10%;
+        background-color: #dcfbf9;
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    .prescription-table td:nth-child(2) {
+        text-align: left;
+        width: 75%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .prescription-table td:nth-child(3) {
+        width: 15%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        text-align: center;
+        padding-left: 5px;
+    }
+
+    .other-left-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0px;
+    }
+
+    .other-left-table th {
+        background-color: #dcfbf9;
+        color: black;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+    }
+
+    .other-left-table th:nth-child(4) {
+        width: 15%;
+        background-color: #dcfbf9;
+        text-align: center;
+    }
+
+    .other-left-table td:nth-child(1) {
+        width: 10%;
+        background-color: #dcfbf9;
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    .other-left-table td:nth-child(2) {
+        text-align: left;
+        width: 20%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .other-left-table td:nth-child(3) {
+        width: 55%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    .other-left-table td:nth-child(4) {
+        width: 15%;
+        background-color: white;
+        border-bottom: 1px solid gray;
+        text-align: center;
+        padding-left: 5px;
+    }
+
+    .main-right-header_row1 {
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+        color: white;
+        margin: 0;
+        padding: 2px 10px;
+    }
+
+    .main-right-header_row1 p {
+        margin: 5px 0;
+    }
+
+    .main-right-header_row2 {
+        display: flex;
+        justify-content: left;
+        background-color: #222;
+        color: white;
+        margin: 0;
+        padding: 2px 10px;
+    }
+
+    .main-right-header_row2 p {
+        margin: 5px 0;
+    }
+
+    .main-right-header_row2 div {
+        display: flex;
+        margin-left: auto;
+        justify-content: right;
+    }
+
+    .main-right-progressnote-record {
+        background-color: #f4f4f4;
+        padding: 10px;
+        padding-top: 0;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0px;
+        margin-bottom: 0;
+    }
+
+    .main-right-progressnote-record-header {
+        display: flex;
+        justify-content: space-between;
+        background-color: lightblue;
+        color: black;
+        padding: 2px 10px;
+    }
+
+    .main-right-progressnote-record-header p {
+        margin: 5px 0;
+        font-weight: bolder;
+    }
+
+    .main-right-progressnote-record-header-row2 {
+        text-align: left;
+        background-color: lightblue;
+        color: black;
+        margin: 0;
+        padding-left: 50px;
+    }
+
+    .main-right-progressnote-record-header-row2 p {
+        margin: 0;
+        font-weight: bolder;
+    }
+
+    .SOAP-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .SOAP-table th {
+        background-color: rgb(217, 243, 251);
+        color: black;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+        justify-content: left;
+
+    }
+
+    .SOAP-table th:nth-child(1) {
+        width: 10%;
+        background-color: rgb(217, 243, 251);
+        text-align: right;
+    }
+
+    .SOAP-table td:nth-child(1) {
+        width: 10%;
+        background-color: rgb(217, 243, 251);
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    .SOAP-table td:nth-child(2) {
+        text-align: left;
+        width: 75%;
+        background-color: white;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .SOAP-table textarea {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        border: 1px solid gray;
+        resize: none;
+    }
+
+    #img-paste-box {
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+    }
+
+    .pasted-img-box {
+        display: flex;
+        justify-content: left;
+        height: 100px;
+        padding: 2px;
+        background-color: #f4f4f4;
+    }
+
+    .pasted-img-box button {
+        width: 50px;
+    }
+
+    .command-panel {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f4f4f4;
+        padding: 10px;
+    }
+
+    .command-panel button {
+        width: 45%;
+        height: 50px;
+    }
+
+    #skip_btn {
+        font-weight: bold;
+        font-size: large;
+        background-color: lightcyan;
+        color: black;
+    }
+
+    #open_answer_modal {
+        font-weight: bold;
+        font-size: large;
+        background-color: pink;
+        color: black;
+    }
+
+    .nav-right {
+        width: 15%;
+        background-color: #b3cffd;
+        padding: 2px;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+
+    .nav-right-btn-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        /* height: 200px; */
+    }
+
+    .nav-right-btn-box button {
+        width: 33%;
+    }
+
+    .doctor-name {
+        text-align: center;
+        background-color: #fff;
+        color: black;
+        margin: 4px;
+        padding: 2px 10px;
+        min-height: 20px;
+    }
+
+    .doctor-name p {
+        margin: 0;
+    }
+
+    .clerk-btn-box {
+        margin: 2px;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+    }
+
+    .clerk-name {
+        justify-content: center;
+        background-color: white;
+        color: black;
+        margin: 4px;
+        padding: 5px;
+    }
+
+    .clerk-name p {
+        margin: 0;
+    }
+
+    .clerk-sub-btn-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        margin: 2px;
+    }
+
+    .clerk-type-btn-box-row-1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        margin: 2px;
+        margin-bottom: 0;
+    }
+
+    .clerk-type-btn-box-row-1 button {
+        width: 50%;
+        font-size: small;
+    }
+
+    .clerk-type-btn-box-row-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        margin: 2px;
+        margin-top: 0;
+    }
+
+    .clerk-type-btn-box-row-2 button {
+        width: 50%;
+        font-size: small;
+    }
+
+    .nav-right-others {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        margin: 4px;
+        padding-top: 10px;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .nav-right-others button {
+        margin: 2px;
+        padding: 5px;
+        font-size: medium;
+    }
+
+
+    /* モーダルウィンドウ */
+    #modalArea {
+        /* display: none; */
+        position: fixed;
+        z-index: 10;
+        /*サイトによってここの数値は調整 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modalBg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30, 30, 30, 0.9);
+    }
+
+    .modalWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        max-width: 500px;
+        padding: 10px 30px;
+        background-color: #fff;
+    }
+
+    .closeModal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+
+    .imageArea {
+        position: fixed;
+        z-index: 10;
+        /*サイトによってここの数値は調整 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-window-bar {
+        display: flex;
+        justify-content: space-between;
+        width: 96%;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background-color: #333;
+        color: #fff;
+        clear: both;
+    }
+
+    .image-window-bar h1 {
+        margin: 0;
+    }
+
+    .imageWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        max-width: 500px;
+        padding: 10px 10px;
+        background-color: #fff;
+    }
+
+    .closeImage {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+
+    .imageWrapper img {
+        width: 100%;
+    }
+
+    .image-window-footer {
+        /* height: 30px; */
+        display: flex;
+        justify-content: space-between;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+    }
+    .blood-culture-window-footer {
+        /* height: 30px; */
+        display: flex;
+        justify-content: right;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+    }
+
+    .image-window-footer p {
+        margin: 0;
+    }
+    .blood-culture-table {
+        
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0px;
+    }
+    /* 列ごとに色分け */
+    .blood-culture-table th {
+        width: 10%;
+        background-color: #dcfbf9;
+        text-align: left;
+        padding-right: 5px;
+        border: 1px solid gray;
+    }
+
+    .progress-note {
+        float: left;
+        width: 25%;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    footer {
+        /* height: 30px; */
+        background-color: #333;
+        color: #fff;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+        clear: both;
+    }
