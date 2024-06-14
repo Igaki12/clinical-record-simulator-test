@@ -16,6 +16,28 @@ function closeBloodCultureModal() {
 function openBloodCultureModal() {
     document.getElementById('bloodCultureArea').style.display = 'block';
 }
+function startCTApp() {
+    alert('CTアプリを起動します');
+    eel.start_ct_app();
+}
+    
+document.addEventListener('DOMContentLoaded', function() {
+    let textareas = document.getElementsByClassName('dynamic-textarea');
+    
+    function adjustTextareaHeight(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+    }
+    
+    Array.prototype.forEach.call(textareas, function(textarea) {
+        textarea.addEventListener('input', function() {
+            adjustTextareaHeight(textarea);
+        });
+        // 初期化時に高さを調整
+        adjustTextareaHeight(textarea);
+    });
+});
+
 
 let imgIndex = 1;
 function backImage() {
@@ -38,14 +60,19 @@ function nextImage() {
     const imgNum = document.getElementById('imgNum');
     imgNum.textContent = imgIndex + '/8';
 }
-function copyImage() {
+
+let copyImageIndex = 0;
+function copyImage()  {
+    copyImageIndex++;
     //<div class="pasted-img-box">
     // <img src="./img/1.png" alt="画像1">
     // <button onclick="deleteImage()">削除</button>
     //</div>
+    // <textarea class="dynamic-textarea"></textarea>
+    // を<div id="img-pastable"> の末尾に追加する
     const img = document.getElementById('imagePlace');
     const imgSrc = img.src;
-    const imgPasteBox = document.getElementById('img-paste-box');
+    const imgPasteBox = document.getElementById('img-pastable');
     const pastedImgBox = document.createElement('div');
     pastedImgBox.classList.add('pasted-img-box');
     const imgTag = document.createElement('img');
@@ -55,9 +82,24 @@ function copyImage() {
     deleteBtn.onclick = function () {
         imgPasteBox.removeChild(pastedImgBox);
     }
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('dynamic-textarea');
+    textarea.name = 'progress_object' + copyImageIndex;
+    textarea.id = 'progress_object' + copyImageIndex;
+    textarea.placeholder = 'ここに入力';
+    function adjustTextareaHeight(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+    }
+    textarea.addEventListener('input', function() {
+        adjustTextareaHeight(textarea);
+    });
     pastedImgBox.appendChild(imgTag);
     pastedImgBox.appendChild(deleteBtn);
     imgPasteBox.appendChild(pastedImgBox);
+    imgPasteBox.appendChild(textarea);
+    adjustTextareaHeight(textarea);
+    adjustTextareaHeight(document.getElementById('progress_object0'));
 }
 
 // キーボードで左矢印キーを押した時にも同様に前の画像を表示する

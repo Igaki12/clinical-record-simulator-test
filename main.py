@@ -1,6 +1,7 @@
 import eel
+import subprocess
 
-
+ct_pass = r"C:\Users\Administrator\Desktop\postCCosce\test.prs"
 question_list = [
     {
         "question": "Q1. 症例１",
@@ -27,17 +28,6 @@ def main():
     eel.init("docs")
     eel.start("index.html", size=(800, 600))
 
-# def main():
-#     eel.init("docs")
-#     thread1 = threading.Thread(target=open_window1)
-#     thread2 = threading.Thread(target=open_window2)
-#     # スレッドの開始
-#     thread1.start()
-#     thread2.start()
-#     # スレッドの終了を待つ
-#     thread1.join()
-#     thread2.join()
-
 
 
 """link1が押下された際に呼び出すスクリプト"""
@@ -59,7 +49,12 @@ def next_question(question_index):
         return question_list[question_index - 1]["question"]
     else:
         return "全ての問題が終了しました。"
-    # return question_list[question_index]["question"]
+
+"""CT画像アプリ起動ボタンが押下された際に呼び出すスクリプト"""
+@eel.expose
+def start_ct_app():
+    print("start_ct_app_button")
+    subprocess.Popen(["start",ct_pass], shell=True)
 
 
 if __name__ == '__main__':

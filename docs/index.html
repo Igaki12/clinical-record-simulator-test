@@ -307,43 +307,45 @@
                             </tr>
                             <tr>
                                 <td>#</td>
-                                <td colspan="2"><textarea name="progress_sharp" id="progress_sharp" cols="70" rows="5"
+                                <td colspan="2"><textarea name="progress_sharp" class="dynamic-textarea" id="progress_sharp" cols="70" rows="5"
                                         placeholder="ここに入力"></textarea></td>
                             </tr>
                             <tr>
                                 <td>(S)</td>
-                                <td colspan="2"><textarea name="progress_subject" id="progress_subject" cols="70"
+                                <td colspan="2"><textarea name="progress_subject" class="dynamic-textarea" id="progress_subject" cols="70"
                                         rows="5" placeholder="ここに入力"></textarea></td>
                             </tr>
                             <tr>
                                 <td>(O)</td>
                                 <td colspan="2">
-                                    <div id="img-paste-box">
+                                    <div id="img-pastable">
+                                        <textarea name="progress_object0" class="dynamic-textarea" id="progress_object0" cols="70" rows="5"
+                                        placeholder="ここに入力"></textarea>
                                         <!-- <div class="pasted-img-box">
                                             <img src="./img/1.png" alt="画像1">
                                             <button onclick="deleteImage()">削除</button>
                                         </div> -->
                                     </div>
-                                    <textarea name="progress_object" id="progress_object" cols="70" rows="5"
-                                        placeholder="ここに入力"></textarea>
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>(A)</td>
-                                <td colspan="2"><textarea name="progress_assessment" id="progress_assessment" cols="70"
+                                <td colspan="2"><textarea name="progress_assessment" class="dynamic-textarea" id="progress_assessment" cols="70"
                                         rows="5" placeholder="ここに入力"></textarea></td>
                             </tr>
                             <tr>
                                 <td>(P)</td>
-                                <td colspan="2"><textarea name="progress_plan" id="progress_plan" cols="70"
-                                        rows="5">ここに入力</textarea></td>
+                                <td colspan="2"><textarea name="progress_plan" class="dynamic-textarea" id="progress_plan" cols="70"
+                                        rows="5" placeholder="ここに入力"></textarea></td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="command-panel">
-                        <button id="skip_btn">この問題をスキップ</button>
-                        <button id="open_answer_modal" onclick="openAnswerModal()">解答を採点する</button>
+                        <!-- <button id="skip_btn">この問題をスキップ</button> -->
+                        <p>生徒ID:000000</p>
+                        <button id="open_answer_modal" onclick="openAnswerModal()">カルテを提出する</button>
                     </div>
                 </div>
 
@@ -400,6 +402,8 @@
                     一般撮影
                 </button>
                 <button>CT検査</button>
+                <!-- ボタンを押すことで専用アプリを起動するようにする。 -->
+                <!-- PIL ImageGrab.grabClipboardで貼り付け -->
                 <button>外来注射</button>
                 <button>外来処置</button>
                 <button>入院申込オーダ</button>
