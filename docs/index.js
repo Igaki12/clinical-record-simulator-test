@@ -1,5 +1,38 @@
+let imgIndex = 1;
+
 function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
+    let progress_sharp = document.getElementById('progress_sharp').value;
+    document.getElementById('check_sharp').innerHTML = progress_sharp;
+    let progress_subject = document.getElementById('progress_subject').value;
+    document.getElementById('check_subject').innerHTML = progress_subject;
+    // let progress_object = document.getElementById('progress_object').value;
+    document.getElementById('check_object').innerHTML = '';
+    for (let i = 0; i < imgIndex; i++) {
+        document.getElementById('check_object').innerHTML += document.getElementById('progress_object' + i).value;
+    }
+    let progress_assessment = document.getElementById('progress_assessment').value;
+    document.getElementById('check_assessment').innerHTML = progress_assessment;
+    let progress_plan = document.getElementById('progress_plan').value;
+    document.getElementById('check_plan').innerHTML = progress_plan;
+    //                     <tr>
+//     <td>(S)</td>
+//     <td id="check_subject"></td>
+// </tr>
+// <tr>
+//     <td>(O)</td>
+//     <td id="check_object"></td>
+// </tr>
+// <tr>
+//     <td>(A)</td>
+//     <td id="check_assessment"></td>
+// </tr>
+// <tr>
+//     <td>(P)</td>
+//     <td id="check_plan"></td>
+// </tr>
+    
+
 }
 function closeAnswerModal() {
     document.getElementById('modalArea').style.display = 'none';
@@ -39,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-let imgIndex = 1;
+
 function backImage() {
     const img = document.getElementById('imagePlace');
     imgIndex--;
@@ -81,6 +114,10 @@ function copyImage()  {
     deleteBtn.textContent = '削除';
     deleteBtn.onclick = function () {
         imgPasteBox.removeChild(pastedImgBox);
+    }
+    // 以前の他のplaceholderを消す
+    for (let i = 0; i < copyImageIndex; i++) {
+        document.getElementById('progress_object' + i).placeholder = '';
     }
     const textarea = document.createElement('textarea');
     textarea.classList.add('dynamic-textarea');
