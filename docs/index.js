@@ -1,5 +1,5 @@
-let imgIndex = 1;
 
+let copyImageIndex = 0;
 function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
     let progress_sharp = document.getElementById('progress_sharp').value;
@@ -8,8 +8,8 @@ function openAnswerModal() {
     document.getElementById('check_subject').innerHTML = progress_subject;
     // let progress_object = document.getElementById('progress_object').value;
     document.getElementById('check_object').innerHTML = '';
-    for (let i = 0; i < imgIndex; i++) {
-        document.getElementById('check_object').innerHTML += document.getElementById('progress_object' + i).value;
+    for (let i = 0; i < copyImageIndex + 1; i++) {
+        document.getElementById('check_object').innerHTML += '<p>' + document.getElementById('progress_object' + i).value + '</p>';
     }
     let progress_assessment = document.getElementById('progress_assessment').value;
     document.getElementById('check_assessment').innerHTML = progress_assessment;
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
+let imgIndex = 1;
 function backImage() {
     const img = document.getElementById('imagePlace');
     imgIndex--;
@@ -94,7 +94,7 @@ function nextImage() {
     imgNum.textContent = imgIndex + '/8';
 }
 
-let copyImageIndex = 0;
+// let copyImageIndex = 0;
 function copyImage()  {
     copyImageIndex++;
     //<div class="pasted-img-box">
