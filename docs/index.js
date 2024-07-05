@@ -54,7 +54,7 @@ function saveClinicalRecord() {
     output_text += " --[ (#) ]------------------ \n";
     let progress_sharp = document.getElementById('progress_sharp').value + "\n";
     progress_sharp = progress_sharp.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
-    output_text += progress_sharp + "\n\n" + "[ (S) ] \n";
+    output_text += progress_sharp + "\n\n" + "--[ (S) ]------------------ \n";
     let progress_subject = document.getElementById('progress_subject').value + "\n";
     progress_subject = progress_subject.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
     output_text += progress_subject + "\n\n" + "--[ (O) ]------------------ \n";
