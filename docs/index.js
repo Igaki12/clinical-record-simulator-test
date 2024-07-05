@@ -2,18 +2,35 @@
 let copyImageIndex = 0;
 function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
-    let progress_sharp = document.getElementById('progress_sharp').value;
+    let progress_sharp = document.getElementById('progress_sharp').value + "\n";
+    // コードを書かれないようにチェックした後、改行を<br>に変換する
+    progress_sharp = progress_sharp.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    progress_sharp = progress_sharp.replace(/\n/g, '<br>');
     document.getElementById('check_sharp').innerHTML = progress_sharp;
-    let progress_subject = document.getElementById('progress_subject').value;
+
+    let progress_subject = document.getElementById('progress_subject').value + "\n";
+    progress_subject = progress_subject.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    progress_subject = progress_subject.replace(/\n/g, '<br>');
     document.getElementById('check_subject').innerHTML = progress_subject;
-    // let progress_object = document.getElementById('progress_object').value;
+
     document.getElementById('check_object').innerHTML = '';
     for (let i = 0; i < copyImageIndex + 1; i++) {
-        document.getElementById('check_object').innerHTML += '<p>' + document.getElementById('progress_object' + i).value + '</p>';
+        if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        }else {
+            document.getElementById('check_object').innerHTML += '<h3>[ 画像 : src=' + document.getElementById('pasted-img' + i).src.split('/').pop() + ' ] </h3>';
+        }
+        let progress_object = document.getElementById('progress_object' + i).value + "\n";
+        progress_object = progress_object.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+        progress_object = progress_object.replace(/\n/g, '<br>');
+        document.getElementById('check_object').innerHTML += progress_object;
     }
-    let progress_assessment = document.getElementById('progress_assessment').value;
+    let progress_assessment = document.getElementById('progress_assessment').value + "\n";
+    progress_assessment = progress_assessment.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    progress_assessment = progress_assessment.replace(/\n/g, '<br>');
     document.getElementById('check_assessment').innerHTML = progress_assessment;
-    let progress_plan = document.getElementById('progress_plan').value;
+    let progress_plan = document.getElementById('progress_plan').value + "\n";
+    progress_plan = progress_plan.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    progress_plan = progress_plan.replace(/\n/g, '<br>');
     document.getElementById('check_plan').innerHTML = progress_plan;
     //                     <tr>
 //     <td>(S)</td>
@@ -31,7 +48,36 @@ function openAnswerModal() {
 //     <td>(P)</td>
 //     <td id="check_plan"></td>
 // </tr>
-    
+}
+function saveClinicalRecord() {
+    let output_text = "保存された時刻：" + new Date().toLocaleString() + "\n";
+    output_text += " --[ (#) ]------------------ \n";
+    let progress_sharp = document.getElementById('progress_sharp').value + "\n";
+    progress_sharp = progress_sharp.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
+    output_text += progress_sharp + "\n\n" + "[ (S) ] \n";
+    let progress_subject = document.getElementById('progress_subject').value + "\n";
+    progress_subject = progress_subject.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
+    output_text += progress_subject + "\n\n" + "--[ (O) ]------------------ \n";
+    let progress_object = '';
+    for (let i = 0; i < copyImageIndex + 1; i++) {
+        if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        }else {
+            progress_object += '\n　\n [ 画像 : src=' + document.getElementById('pasted-img' + i).src.split('/').pop() + ' ]\n　\n';
+        }
+        let progress_object_text = document.getElementById('progress_object' + i).value + "\n";
+        progress_object_text = progress_object_text.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
+        progress_object += progress_object_text;
+    }
+    output_text += progress_object + "\n\n" + "--[ (A) ]------------------ \n";
+    let progress_assessment = document.getElementById('progress_assessment').value + "\n";
+    progress_assessment = progress_assessment.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
+    output_text += progress_assessment + "\n\n" + "--[ (P) ]------------------ \n";
+    let progress_plan = document.getElementById('progress_plan').value + "\n";
+    progress_plan = progress_plan.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
+    output_text += progress_plan;
+    alert(output_text);
+    eel.save_clinical_record(output_text);
+
 
 }
 function closeAnswerModal() {
@@ -53,6 +99,8 @@ function startCTApp() {
     alert('CTアプリを起動します');
     eel.start_ct_app();
 }
+
+
     
 document.addEventListener('DOMContentLoaded', function() {
     let textareas = document.getElementsByClassName('dynamic-textarea');
@@ -110,10 +158,13 @@ function copyImage()  {
     pastedImgBox.classList.add('pasted-img-box');
     const imgTag = document.createElement('img');
     imgTag.src = imgSrc;
+    imgTag.alt = '画像' + imgIndex;
+    imgTag.id = 'pasted-img' + copyImageIndex;
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = '削除';
     deleteBtn.onclick = function () {
-        imgPasteBox.removeChild(pastedImgBox);
+        pastedImgBox.style.display = 'none';
+        imgTag.style.display = 'none';
     }
     // 以前の他のplaceholderを消す
     for (let i = 0; i < copyImageIndex; i++) {

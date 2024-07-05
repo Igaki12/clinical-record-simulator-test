@@ -13,16 +13,6 @@ question_list = [
         "question": "Q3. 症例３",
     }
 ]
-# import threading
-#１つ目のウィンドウを起動
-# def open_window1():
-#     eel.start("index.html" , block=False , size=(800, 600))
-#     eel.sleep(1)
-
-# #2つ目のウィンドウを起動
-# def open_window2():
-#     eel.start("chat_screen_generated2.html" , block=False , size=(300, 600))
-#     eel.sleep(1)
 
 def main():
     eel.init("docs")
@@ -56,6 +46,12 @@ def start_ct_app():
     print("start_ct_app_button")
     subprocess.Popen(["start",ct_pass], shell=True)
 
+"""save text file"""
+@eel.expose
+def save_text_file(text):
+    with open("saved_text.txt", "w") as file:
+        file.write(text)
+    print("Text file saved successfully!")
 
 if __name__ == '__main__':
      main()
