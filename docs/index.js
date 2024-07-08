@@ -99,6 +99,10 @@ function closeBloodCultureModal() {
 function openBloodCultureModal() {
     document.getElementById('bloodCultureArea').style.display = 'block';
 }
+function statrVideoApp() {
+    eel.start_video_app()();
+    print('動画アプリを起動しました');
+}
 function startCTApp() {
     // alert('CTアプリを起動します');
     const pasteCTImageBtn = document.getElementById('pasteCTImageBtn');
@@ -107,23 +111,22 @@ function startCTApp() {
     alert('CTアプリを起動しました。Ctrl + C で画像をコピーして、「CT画像を貼付」ボタンを押すことで、CT画像を貼り付けることができます。');
     document.getElementById('startCTBtn').style.display = 'none';
 }
-function displayImage() {
+async function displayImage() {
     // Python関数を呼び出してクリップボードから画像を取得
-    let result = eel.grab_clipboard_image()();
-    print(result);
+    let result_png_path = await eel.grab_clipboard_image()();
+    print(result_png_path);
     
-    if (result) {
+    if (result_png_path) {
         // 画像を表示
         copyImageIndex++;
         const img = document.getElementById('imagePlace');
-        alert(result);
-        img.src = result;
+        // alert(result_png_path);
         const imgPasteBox = document.getElementById('img-pastable');
         const pastedImgBox = document.createElement('div');
         pastedImgBox.classList.add('pasted-img-box');
         const imgTag = document.createElement('img');
-        imgTag.src = imgSrc;
-        imgTag.alt = '画像' + imgIndex;
+        imgTag.src = result_png_path;
+        imgTag.alt = '画像:' + result_png_path;
         imgTag.id = 'pasted-img' + copyImageIndex;
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = '削除';
