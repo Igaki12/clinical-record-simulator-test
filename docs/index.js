@@ -76,7 +76,7 @@ function saveClinicalRecord() {
     progress_plan = progress_plan.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
     output_text += progress_plan;
     alert(output_text);
-    eel.save_clinical_record(output_text);
+    eel.save_clinical_record(output_text)();
 
 
 }
@@ -99,7 +99,7 @@ function startCTApp() {
     alert('CTアプリを起動します');
     const pasteCTImageBtn = document.getElementById('pasteCTImageBtn');
     pasteCTImageBtn.style.display = 'block';
-    eel.start_ct_app();
+    eel.start_ct_app()();
     document.getElementById('startCTBtn').style.display = 'none';
 }
 function displayImage() {
