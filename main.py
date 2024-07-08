@@ -16,32 +16,38 @@ question_list = [
         "question": "Q3. 症例３",
     }
 ]
-
 def main():
     eel.init("docs")
-    eel.start("index.html", size=(800, 600))
+    eel.start("index.html", size=(1200, 1000))
 
 
 
-"""link1が押下された際に呼び出すスクリプト"""
-@eel.expose
-def link1_click():
-    print("link1_clicked")
+# """link1が押下された際に呼び出すスクリプト"""
+# @eel.expose
+# def link1_click():
+#     print("link1_clicked")
 
-"""link2が押下された際に呼び出すスクリプト"""
-@eel.expose
-def link2_click(args):
-    print(args)
-    return "link2_clicked"
+# """link2が押下された際に呼び出すスクリプト"""
+# @eel.expose
+# def link2_click(args):
+#     print(args)
+#     return "link2_clicked"
 
-"""次へボタンが押下された際に呼び出すスクリプト"""
-@eel.expose
-def next_question(question_index):
-    print("next_question_button")
-    if question_index < len(question_list) + 1:
-        return question_list[question_index - 1]["question"]
-    else:
-        return "全ての問題が終了しました。"
+# """次へボタンが押下された際に呼び出すスクリプト"""
+# @eel.expose
+# def next_question(question_index):
+#     print("next_question_button")
+#     if question_index < len(question_list) + 1:
+#         return question_list[question_index - 1]["question"]
+#     else:
+#         return "全ての問題が終了しました。"
+
+# """アプリのスタート時間を引き渡すスクリプト"""
+# @eel.expose
+# def get_start_time():
+#     today = datetime.datetime.now()
+#     return today.strftime('%Y/%m/%d %H:%M:%S')
+
 
 """CT画像アプリ起動ボタンが押下された際に呼び出すスクリプト"""
 @eel.expose

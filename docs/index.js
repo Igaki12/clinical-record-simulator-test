@@ -1,5 +1,8 @@
 
 let copyImageIndex = 0;
+// アプリのスタート時間を記録する
+let start_time = new Date().toLocaleString();
+
 function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
     let progress_sharp = document.getElementById('progress_sharp').value + "\n";
@@ -50,7 +53,8 @@ function openAnswerModal() {
 // </tr>
 }
 function saveClinicalRecord() {
-    let output_text = "保存された時刻：" + new Date().toLocaleString() + "\n";
+    // let output_text = "保存された時刻：" + new Date().toLocaleString() + "\n";
+    let output_text = "解答開始時刻：" + start_time + "\n" + "保存された時刻：" + new Date().toLocaleString() + "\n";
     output_text += " --[ (#) ]------------------ \n";
     let progress_sharp = document.getElementById('progress_sharp').value + "\n";
     progress_sharp = progress_sharp.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
@@ -76,7 +80,7 @@ function saveClinicalRecord() {
     progress_plan = progress_plan.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
     output_text += progress_plan;
     alert(output_text);
-    eel.save_clinical_record(output_text)();
+    eel.save_text_file(output_text)();
 
 
 }
@@ -96,10 +100,11 @@ function openBloodCultureModal() {
     document.getElementById('bloodCultureArea').style.display = 'block';
 }
 function startCTApp() {
-    alert('CTアプリを起動します');
+    // alert('CTアプリを起動します');
     const pasteCTImageBtn = document.getElementById('pasteCTImageBtn');
     pasteCTImageBtn.style.display = 'block';
     eel.start_ct_app()();
+    alert('CTアプリを起動しました。Ctrl + C で画像をコピーして、「CT画像を貼付」ボタンを押すことで、CT画像を貼り付けることができます。');
     document.getElementById('startCTBtn').style.display = 'none';
 }
 function displayImage() {
