@@ -1,5 +1,8 @@
 import eel
+import os
+import datetime
 import subprocess
+from PIL import ImageGrab
 
 ct_pass = r"C:\Users\Administrator\Desktop\postCCosce\test.prs"
 question_list = [
@@ -49,9 +52,38 @@ def start_ct_app():
 """save text file"""
 @eel.expose
 def save_text_file(text):
-    with open("saved_text.txt", "w") as file:
-        file.write(text)
-    print("Text file saved successfully!")
+    print("saving text file")
+    today = datetime.datetime.now()
+    curtime = today.strftime('%Y%m%d%H%M%S'+".txt")
+    initdir= os.path.join(os.getcwd(),"output")
+    if not os.path.exists(initdir):
+        os.makedirs(initdir)
+        # ファイルパスの設定が違う気がする
+    with open(os.path.join(initdir,curtime), mode='w') as f:
+        f.write(text)
+    print("Success: Text file saved")
+    
+@eel.expose
+def grab_clipboard_image():
+    # クリップボードから画像を取得
+    image = ImageGrab.grabclipboard()
+    
+    if image is not None:
+        # 画像をリサイズ
+        image = image.resize((400, 400))
+        # 画像をファイルに保存
+        today = datetime.datetime.now()
+        curtime = today.strftime('%Y%m%d%H%M%S'+".png")
+        initdir= os.path.join(os.getcwd(),"output")
+        if not os.path.exists(initdir):
+            os.makedirs(initdir)
+        image_name = os.path.join(initdir,curtime)
+        image.save(image_name)
+        return image_name
+    else:
+        return False
+
+
 
 if __name__ == '__main__':
      main()

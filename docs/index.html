@@ -401,7 +401,10 @@
                 <button style="background-color: rgb(254, 200, 200);" onclick="openImageModal()">
                     一般撮影
                 </button>
-                <button>CT検査</button>
+                <button id="startCTBtn" onclick="startCTApp()">CT検査</button>
+                <button id="pasteCTImageBtn" style="background-color: rgb(254, 200, 200); display: none;" onclick="displayImage()">
+                    ←CT画像を貼付</button>
+                <!-- <button>←CT画像を貼付</button> -->
                 <!-- ボタンを押すことで専用アプリを起動するようにする。 -->
                 <!-- PIL ImageGrab.grabClipboardで貼り付け -->
                 <button>外来注射</button>

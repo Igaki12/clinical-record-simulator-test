@@ -97,9 +97,65 @@ function openBloodCultureModal() {
 }
 function startCTApp() {
     alert('CTアプリを起動します');
+    const pasteCTImageBtn = document.getElementById('pasteCTImageBtn');
+    pasteCTImageBtn.style.display = 'block';
     eel.start_ct_app();
+    document.getElementById('startCTBtn').style.display = 'none';
 }
+function displayImage() {
+    // Python関数を呼び出してクリップボードから画像を取得
+    let result = eel.grab_clipboard_image()();
+    print(result);
+    
+    if (result) {
+        // 画像を表示
+        copyImageIndex++;
+        const img = document.getElementById('imagePlace');
+        alert(result);
+        img.src = result;
+        const imgPasteBox = document.getElementById('img-pastable');
+        const pastedImgBox = document.createElement('div');
+        pastedImgBox.classList.add('pasted-img-box');
+        const imgTag = document.createElement('img');
+        imgTag.src = imgSrc;
+        imgTag.alt = '画像' + imgIndex;
+        imgTag.id = 'pasted-img' + copyImageIndex;
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = '削除';
+        deleteBtn.onclick = function () {
+            pastedImgBox.style.display = 'none';
+        }
+        for (let i = 0; i < copyImageIndex; i++) {
+            document.getElementById('progress_object' + i).placeholder = '';
+        }
+        const textarea = document.createElement('textarea');
+        textarea.classList.add('dynamic-textarea');
+        textarea.name = 'progress_object' + copyImageIndex;
+        textarea.id = 'progress_object' + copyImageIndex;
+        textarea.placeholder = 'ここに入力';
+        function adjustTextareaHeight(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+        textarea.addEventListener('input', function() {
+            adjustTextareaHeight(textarea);
+        });
+        pastedImgBox.appendChild(imgTag);
+        pastedImgBox.appendChild(deleteBtn);
+        imgPasteBox.appendChild(pastedImgBox);
+        imgPasteBox.appendChild(textarea);
+        adjustTextareaHeight(textarea);
+        adjustTextareaHeight(document.getElementById('progress_object0'));
+    
 
+
+        // let img = document.getElementById('image');
+        // img.src = 'clipboard_image.png';
+        // img.style.display = 'block';
+    } else {
+        alert('No image found in clipboard.');
+    }
+}
 
     
 document.addEventListener('DOMContentLoaded', function() {
