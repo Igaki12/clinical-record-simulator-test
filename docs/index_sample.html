@@ -18,28 +18,29 @@
             <div class="header">
                 <div class="column1">
                     <p>外来</p>
-                    <p id="category">内科</p>
+                    <p>内科</p>
                 </div>
                 <div class="column2">
-                    <p id="patient_id">患者ID: 123456</p>
+                    <!-- <p>患者情報</p> -->
+                    <p>患者ID: 123456</p>
                 </div>
                 <div class="column3"></div>
                 <div class="column4">
-                    <p id="name_kana">やまだ　たろう</p>
-                    <h3 id="name_kanji">山田　太郎</h3>
+                    <p>やまだ　たろう</p>
+                    <h3>山田　太郎</h3>
                 </div>
                 <div class="column5">
-                    <p id="sex">性別: 男</p>
-                    <p id="age">69歳6ヶ月</p>
+                    <!-- <p>性別: 男</p> -->
+                    <p>69歳6ヶ月</p>
                 </div>
                 <div class="column6">
-                    <p id="blood_type">O型 Rh(+)</p>
+                    <p>O型 Rh(+)</p>
                 </div>
                 <div class="column7">
-                    <p id="height">155.0cm</p>
+                    <p>155.0cm</p>
                 </div>
                 <div class="column8">
-                    <p id="weight">63.000kg</p>
+                    <p>63.000kg</p>
                 </div>
                 <div class="column9">
                     <button>Prof</button>
@@ -68,16 +69,17 @@
                         <button>C</button>
                     </div>
                     <!-- ナビゲーションメニューのリンクなどをここに追加 -->
-                    <div class="record_links" id="navigation_bar">
+                    <div class="record_links">
+                        <a>カルテ1</a>
+                        <a>カルテ2</a>
+                        <a>カルテ3</a>
+                        <a>カルテ4</a>
                         <!-- <a>血液検査結果</a> -->
                         <a onclick="openBloodCultureModal()">血液培養結果</a>
-                        <!-- <div id="tree_parent">
-                            <a>カルテ1</a>
-                        </div> -->
 
                     </div>
                 </nav>
-                <div class="main-column" id="main-left">
+                <div class="main-column">
                     <div class="main-left-header_row1">
                         <p>全科カルテ</p>
                         <p>2024/05/13(月)</p>
@@ -92,11 +94,190 @@
                             <button>C</button>
                         </div>
                     </div>
+                    <div class="main-left-progressnote-record">
+                        <div class="main-left-progressnote-record-header">
+                            <div style="display: flex;">
+                                <button>開</button>
+                                <p>【プログレスノート】</p>
+                            </div>
+                            <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                        </div>
+                        <div class="main-left-progressnote-record-header-row2">
+                            <p>2024/05/13(月) 09:00</p>
+                        </div>
+                        <table class="progress-table">
+                            <tr>
+                                <th>依頼</th>
+                                <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                <th>総合　本</th>
+                            </tr>
+                            <tr>
+                                <td>(S)</td>
+                                <td colspan="2">著変なし</td> <!-- colspan="2"で2列結合 -->
+                            </tr>
+                            <tr>
+                                <td>(O)</td>
+                                <td colspan="2">BS 112<br>血圧 142/82<br>HbA1c 6.1%</td>
+                            </tr>
+                        </table>
+
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>【外来院外処方】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <div class="main-left-prescription-record-header-row2">
+                                <p>2024/05/13(月) 09:00</p>
+                            </div>
+                            <table class="prescription-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>レニペース錠5</td>
+                                    <td>1錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>アタラートCR錠40mg</td>
+                                    <td>1錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日1回朝食後</td>
+                                    <td>14日分</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>ムコスタ錠100</td>
+                                    <td>3錠</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日3回食後</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>ヒューマリンR注U-100</td>
+                                    <td>3Ｖ</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">1日3回</td>
+                                    <td>14日分</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>朝食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>昼食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>夕食直前 6単位</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right;">【服用開始日:2011/05/19(木)】</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>後発薬品への変更可</td>
+                                    <td></td>
+                                </tr>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>　【検体検査】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <table class="other-left-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th colspan="2">2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>末梢液</td>
+                                    <td colspan="2">・GOT ・GPT ・BUN ・Cr ・Na ・K ・Cl ・Alb</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>関節液</td>
+                                    <td colspan="2">・CBC</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>骨髄液</td>
+                                    <td colspan="2">・血糖　・Hb分画</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="main-left-prescription-record">
+                            <div class="main-left-prescription-record-header">
+                                <div style="display: flex;">
+                                    <button>開</button>
+                                    <p>　【再診予約・他科診】</p>
+                                </div>
+                                <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                            </div>
+                            <div class="main-left-prescription-record-header-row2">
+                                <p>2024/05/13(月) 09:00</p>
+                            </div>
+                            <table class="other-left-table">
+                                <tr>
+                                    <th>依頼</th>
+                                    <th colspan="2">2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                    <th>総合　本</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>診察グループ</td>
+                                    <td colspan="2">内科</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>予約枠名</td>
+                                    <td colspan="2">富士通　清美</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="main-column">
                     <div class="main-right-header_row1">
                         <p>エディタ(新規)</p>
-                        <p id="patient_name(id)">山田　太郎(123456)</p>
+                        <p>山田　太郎(123456)</p>
                         <button>閉</button>
                     </div>
                     <div class="main-right-header_row2">
@@ -314,42 +495,67 @@
                     <h1>血液培養結果</h1>
                     <button onclick="closeBloodCultureModal()">閉じる</button>
                 </div>
-                <div id="bloodCultureResult">
-                    WBC: 9,900/μl(3300~8600)
-                            RBC: 542万/μl(435~555)
-                            Hgb: 15.7/dl(13.6~16.8)
-                            Htc: 47.4%(32.1~42.7)
-                            Plt: 29.0万(15.8~34.8)
-                            CRP: 0.1mg/dl(~0.3)
-                            TP: 7.5g/dl(6.6~8.1)
-                            Alb: 4.5g/dl(4.1~5.1)
-                </div>
-                <!-- <table class="blood-culture-table">
+                <table class="blood-culture-table">
                     <tr>
-                        <th>検体結果</th>
+                        <th>採取日</th>
+                        <th>検査日</th>
+                        <th>GOT</th>
+                        <th>GPT</th>
+                        <th>BUN</th>
+                        <th>Cr</th>
+                        <th>Na</th>
                     </tr>
                     <tr>
-                        <td>WBC: 9,900/μl(3300~8600)
-                            RBC: 542万/μl(435~555)
-                            Hgb: 15.7/dl(13.6~16.8)
-                            Htc: 47.4%(32.1~42.7)
-                            Plt: 29.0万(15.8~34.8)
-                            CRP: 0.1mg/dl(~0.3)
-                            TP: 7.5g/dl(6.6~8.1)
-                            Alb: 4.5g/dl(4.1~5.1)
-                            AST: 36U/L(13~40)
-                            ALT: 72U/L(10~42)
-                            CPK: 109IU/L(59~248)
-                            AMY: 44IU/L(37~125)
-                            GLU: 108mg/dl(69~109)
-                            Cre:1.15mg/dL(0.65~1.07)</td>
+                        <td>2024/05/13</td>
+                        <td>2024/05/13</td>
+                        <td>20</td>
+                        <td>15</td>
+                        <td>10</td>
+                        <td>0.8</td>
+                        <td>140</td>
                     </tr>
-                    </table> -->
+                    <tr>
+                        <td>2024/05/14</td>
+                        <td>2024/05/14</td>
+                        <td>25</td>
+                        <td>20</td>
+                        <td>12</td>
+                        <td>0.9</td>
+                        <td>142</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/15</td>
+                        <td>2024/05/15</td>
+                        <td>30</td>
+                        <td>25</td>
+                        <td>15</td>
+                        <td>1.0</td>
+                        <td>145</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/16</td>
+                        <td>2024/05/16</td>
+                        <td>35</td>
+                        <td>30</td>
+                        <td>18</td>
+                        <td>1.1</td>
+                        <td>148</td>
+                    </tr>
+                    <tr>
+                        <td>2024/05/17</td>
+                        <td>2024/05/17</td>
+                        <td>40</td>
+                        <td>35</td>
+                        <td>20</td>
+                        <td>1.2</td>
+                        <td>150</td>
+                    </tr>
+                </table>
                 <div class="blood-culture-window-footer">
+                    <button id="copyBloodCulture" onclick="copyBloodCulture()">結果を全て貼り付け</button>
                 </div>
             </div>
         </div>
-        </section>
 </body>
 
 </html>

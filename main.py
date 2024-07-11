@@ -8,18 +8,98 @@ ct_path = r"C:\Users\Administrator\Desktop\postCCosce\test.prs"
 video_path = r"C:\Users\Administrator\Desktop\postCCosce\povideo.mp4"
 question_list = [
     {
-        "question": "Q1. 症例１",
+        "question_id": 1,
+        "title" : "2024_Q1",
+        "patient_header":{
+            "category": "内科",
+            "patient_id": 123456,
+            "name_kana": "たなか たろう",
+            "name_kanji": "田中 太郎",
+            # 性別
+            "sex": "男",
+            "age": "48歳",
+            # 血液型
+            "blood_type": "O型",
+            # 身長
+            "height": "170cm",
+            # 体重
+            "weight": "70kg",
+        },
+        "navigation_bar":[
+            {
+                "nav_id": 1,
+                "title": "カルテ1",
+                "type":"progress_note",
+                "date_1": "20XX年X月X日 9:00",
+                "date_2": "20XX年X月X日 10:00",
+                "doctor": "医大 花子",
+                "doctor_category": "内科",
+                "#": """""",
+                "S": """""",
+                "O": """体温:36.6℃　心拍数:78/min.  
+                血圧:170/84mmHg  
+                呼吸数：14回/min.　SpO2 100%(room air)
+                """,
+                "A": """""",
+                "P": """""",
+            },{
+                "nav_id": 2,
+                "title": "検体検査結果",
+                "type":"tree_parent",
+            },{
+                "nav_id": 3,
+                "title": "20XX年X月X日",
+                "type":"blood_test",
+                "parent_id": 2,
+                "result": """WBC: 9,900/μl(3300~8600)
+                RBC: 542万/μl(435~555)
+                Hgb: 15.7/dl(13.6~16.8)
+                Htc: 47.4%(32.1~42.7)
+                Plt: 29.0万(15.8~34.8)
+                CRP: 0.1mg/dl(~0.3)
+                TP: 7.5g/dl(6.6~8.1)
+                Alb: 4.5g/dl(4.1~5.1)
+                AST: 36U/L(13~40)
+                ALT: 72U/L(10~42)
+                CPK: 109IU/L(59~248)
+                AMY: 44IU/L(37~125)
+                GLU: 108mg/dl(69~109)
+                Cre:1.15mg/dL(0.65~1.07)
+                """,
+            },{
+                "nav_id": 4,
+                "title": "20XX年X月X+1日",
+                "type":"urine_test",
+                "parent_id": 2,
+                "data": """尿pH : 6.0
+                比重：1.029
+                潜血：3+
+                白血球：1+
+                尿糖：-
+                蛋白：-
+                ケトン：-
+                ビリルビン：-
+                ウロビリノゲン：0.1
+                """,
+            }
+        ]
     },
     {
-        "question": "Q2. 症例２",
+        "question_id": 2,
     },
     {
-        "question": "Q3. 症例３",
+        "question_id": 3,
     }
 ]
 def main():
     eel.init("docs")
-    eel.start("index.html", size=(1500, 1000))
+    eel.start("index.html", size=(2000, 1500))
+
+# """アプリ起動 と同時に問題データを取得してindex.htmlに渡す"""
+@eel.expose
+def get_question_data():
+    return question_list
+
 
 
 
@@ -62,19 +142,30 @@ def start_movie_app():
     print("start_movie_app_button")
     subprocess.Popen(["start",video_path], shell=True)
 
+"""アプリを起動させた瞬間に保存用のフォルダを作成する。 フォルダ名はアプリを起動させた時間"""
+start_time = datetime.datetime.now()
+parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
+@eel.expose
+def create_output_folder():
+    if not os.path.exists(parent_dir):
+        os.makedirs(parent_dir)
+        print("Success: Output folder created")
+    else:
+        print("Error: Output folder already exists")
+
+
 """save text file"""
 @eel.expose
 def save_text_file(text):
     print("saving text file")
     today = datetime.datetime.now()
     curtime = today.strftime('%Y%m%d%H%M%S'+".txt")
-    initdir= os.path.join(os.getcwd(),"docs/output")
-    if not os.path.exists(initdir):
-        os.makedirs(initdir)
-        # ファイルパスの設定が違う気がする
-    with open(os.path.join(initdir,curtime), mode='w') as f:
+    if not os.path.exists(parent_dir):
+        os.makedirs(parent_dir)
+    with open(os.path.join(parent_dir,curtime), mode='w') as f:
         f.write(text)
     print("Success: Text file saved")
+
 
 
     
@@ -89,14 +180,12 @@ def grab_clipboard_image():
         # 画像をファイルに保存
         today = datetime.datetime.now()
         curtime = today.strftime('%Y%m%d%H%M%S'+".png")
-        initdir= os.path.join(os.getcwd(),"docs/output")
-        if not os.path.exists(initdir):
-            os.makedirs(initdir)
-        image_name = os.path.join(initdir,curtime)
+        if not os.path.exists(parent_dir):
+            os.makedirs(parent_dir)
+        image_name = os.path.join(parent_dir,curtime)
         image.save(image_name)
-        return "./output/"+curtime
-        # Current source:	http://localhost:8000/img/1.png
-
+        print("Success: Image saved")
+        return "./output/"+start_time.strftime('%Y%m%d%H%M%S')+"/"+curtime
     else:
         return False
     
