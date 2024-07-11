@@ -28,10 +28,16 @@ question_list = [
         "navigation_bar":[
             {
                 "nav_id": 1,
-                "title": "カルテ1",
+                "title": "カルテ",
+                "type":"tree_parent",
+            },
+            {
+                "nav_id": 2,
+                "title": "20XX年X月X日",
                 "type":"progress_note",
-                "date_1": "20XX年X月X日 9:00",
-                "date_2": "20XX年X月X日 10:00",
+                "parent_id": 1,
+                "date_1": "20XX/X/XX 9:00",
+                "date_2": "20XX/X/XX 10:00",
                 "doctor": "医大 花子",
                 "doctor_category": "内科",
                 "#": """""",
@@ -43,14 +49,14 @@ question_list = [
                 "A": """""",
                 "P": """""",
             },{
-                "nav_id": 2,
+                "nav_id": 3,
                 "title": "検体検査結果",
                 "type":"tree_parent",
             },{
-                "nav_id": 3,
+                "nav_id": 4,
                 "title": "20XX年X月X日",
                 "type":"blood_test",
-                "parent_id": 2,
+                "parent_id": 3,
                 "result": """WBC: 9,900/μl(3300~8600)
                 RBC: 542万/μl(435~555)
                 Hgb: 15.7/dl(13.6~16.8)
@@ -67,11 +73,15 @@ question_list = [
                 Cre:1.15mg/dL(0.65~1.07)
                 """,
             },{
-                "nav_id": 4,
+                "nav_id": 5,
+                "title": "尿検査結果",
+                "type":"tree_parent",
+            },{
+                "nav_id": 6,
                 "title": "20XX年X月X+1日",
                 "type":"urine_test",
-                "parent_id": 2,
-                "data": """尿pH : 6.0
+                "parent_id": 5,
+                "result": """尿pH : 6.0
                 比重：1.029
                 潜血：3+
                 白血球：1+
@@ -145,6 +155,19 @@ def start_movie_app():
 """アプリを起動させた瞬間に保存用のフォルダを作成する。 フォルダ名はアプリを起動させた時間"""
 start_time = datetime.datetime.now()
 parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
+
+@eel.expose
+def get_start_time():
+    # 曜日を日本語に直す
+    days = ["月","火","水","木","金","土","日"]
+    if start_time.weekday() == 0:
+        start_time_str = start_time.strftime('%Y/%m/%d(%a) %H:%M') + " "
+    else:
+        start_time_str = start_time.strftime('%Y/%m/%d('+days[start_time.weekday()]+') %H:%M') + " "
+    print("start_time: ",start_time_str)
+    return start_time_str
+
+
 @eel.expose
 def create_output_folder():
     if not os.path.exists(parent_dir):

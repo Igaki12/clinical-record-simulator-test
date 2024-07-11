@@ -46,7 +46,7 @@
                     <button>病名</button>
                 </div>
                 <div class="head_close_all">
-                    <button>カルテ閉じる</button>
+                    <button onclick="openAnswerModal()" style="color: black; background-color: #fff;">カルテを閉じる</button>
                 </div>
             </div>
             <div class="main-flex">
@@ -70,7 +70,7 @@
                     <!-- ナビゲーションメニューのリンクなどをここに追加 -->
                     <div class="record_links" id="navigation_bar">
                         <!-- <a>血液検査結果</a> -->
-                        <a onclick="openBloodCultureModal()">血液培養結果</a>
+                        <!-- <a onclick="openBloodCultureModal()">血液培養結果</a> -->
                         <!-- <div id="tree_parent">
                             <a>カルテ1</a>
                         </div> -->
@@ -80,7 +80,7 @@
                 <div class="main-column" id="main-left">
                     <div class="main-left-header_row1">
                         <p>全科カルテ</p>
-                        <p>2024/05/13(月)</p>
+                        <p id="start_time_str_short">2024/05/13(月)</p>
                         <button>閉</button>
                     </div>
                     <div class="main-left-header_row2">
@@ -117,12 +117,12 @@
                             <p><span style="color: purple;">内科</span> <span>外来</span></p>
                         </div>
                         <div class="main-right-progressnote-record-header-row2">
-                            <p>2024/05/13(月) 09:00</p>
+                            <p id="start_time_str1">2024/05/13(月) 09:00</p>
                         </div>
                         <table class="SOAP-table">
                             <tr>
                                 <th>依頼</th>
-                                <th>2024/05/13(月) 10:00 医師)富士通 清美</th>
+                                <th id="SOAP-table_Th2">2024/05/13(月) 10:00 医師)Post_CC_OSCE</th>
                                 <th>総合　本</th>
                             </tr>
                             <tr>
@@ -165,7 +165,7 @@
                     <div class="command-panel">
                         <!-- <button id="skip_btn">この問題をスキップ</button> -->
                         <p>生徒ID:000000</p>
-                        <button id="open_answer_modal" onclick="openAnswerModal()">カルテを提出する</button>
+                        <!-- <button id="open_answer_modal" onclick="openAnswerModal()">カルテを提出する</button> -->
                     </div>
                 </div>
 
@@ -181,7 +181,7 @@
                 <button>処方</button>
             </div>
             <div class="doctor-name">
-                <p>富士通 清美</p>
+                <p></p>
             </div>
             <div class="doctor-name">
                 <p></p>
@@ -218,12 +218,13 @@
                 <button>前回処方</button>
                 <button>再診予約</button>
                 <button>検体検査</button>
-                <button style="background-color: rgb(254, 200, 200);" onclick="startVideoApp()">
+                <button style="color: black; background-color: white;" onclick="startVideoApp()">
                     診療動画</button>
-                <button style="background-color: rgb(254, 200, 200);" onclick="openImageModal()">
+                <button>一般撮影</button>
+                <!-- <button style="color: black; background-color: #fff;" onclick="openImageModal()">
                     一般撮影
-                </button>
-                <button id="startCTBtn" onclick="startCTApp()">CT検査</button>
+                </button> -->
+                <button style="color: black; background-color: #fff;" onclick="startCTApp()">CT検査</button>
                 <button id="pasteCTImageBtn" style="background-color: rgb(254, 200, 200); display: none;" onclick="displayImage()">
                     ←CT画像を貼付</button>
                 <!-- <button>←CT画像を貼付</button> -->

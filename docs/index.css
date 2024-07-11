@@ -8,10 +8,10 @@
     body button {
         /* レトロな色のボタンデザイン */
         font-size: small;
-        background-color: #fffffff3;
+        background-color: #e3e0e0f3;
         border: 1px solid #333;
         border-radius: 1px;
-        color: #333;
+        color: #828181;
         cursor: pointer;
     }
 
@@ -177,7 +177,7 @@
     }
 
     .record_links a {
-        padding-left: 20px;
+        padding-left: 15px;
         font-weight: bolder;
         color: black;
         text-decoration: none;
@@ -831,7 +831,8 @@
         width: 100%;
         border-collapse: collapse;
         margin-top: 0px;
-        padding-left: 5px;
+        /* height: 70vh; */
+        overflow-y: scroll;
     }
     /* 列ごとに色分け */
     .blood-culture-table th {
@@ -840,14 +841,47 @@
         text-align: left;
         padding-right: 5px;
         border: 1px solid gray;
+        padding-left: 20px;
     }
     .blood-culture-table td {
         width: 90%;
         background-color: white;
         text-align: left;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 20px;
+        padding-left: 20px;
         border: 1px solid gray;
+    }
+    .urinalysis-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0px;
+        /* height: 70vh; */
+        overflow-y: scroll;
+    }
+    /* 列ごとに色分け */
+    .urinalysis-table th {
+        width: 10%;
+        background-color: #dcfbf9;
+        text-align: left;
+        padding-right: 5px;
+        border: 1px solid gray;
+        padding-left: 20px;
+    }
+    .urinalysis-table td {
+        width: 90%;
+        background-color: white;
+        text-align: left;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: 1px solid gray;
+    }
+    .urinalysis-table-footer {
+        /* height: 30px; */
+        display: flex;
+        justify-content: right;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
     }
 
     .progress-note {

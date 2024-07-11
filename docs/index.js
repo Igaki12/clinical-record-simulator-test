@@ -4,8 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // まず読み込み用の フォルダを作成する
     eel.create_output_folder()();
 
+    // 今日の日付、時刻を反映する
+    const start_time_str = eel.get_start_time()(
+        async function(start_time_str) {
+            document.getElementById('start_time_str_short').textContent = start_time_str.split(' ')[0];
+            document.getElementById('start_time_str1').textContent = start_time_str;
+            document.getElementById('SOAP-table_Th2').textContent = start_time_str + '医師)Post_CC_OSCE';
+        });
+
+
     eel.get_question_data()(
-        function(question_data) {
+        async function(question_data) {
             // データを取得したら、HTMLに反映する
             document.getElementById('category').textContent = question_data[0]["patient_header"]["category"];
             document.getElementById('patient_id').textContent = "患者ID: "+ question_data[0]["patient_header"]["patient_id"];
@@ -56,22 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     progressNoteRecordHeader.classList.add('main-left-progressnote-record-header');
     const progressNoteRecordHeaderRow1 = document.createElement('div');
     progressNoteRecordHeaderRow1.style.display = 'flex';
-    const openBtn = document.createElement('button');
-    openBtn.textContent = '開';
-    openBtn.style.display = 'none';
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = '閉';
-    closeBtn.style.display = 'block';
-    openBtn.onclick = function () {
-        document.getElementById('progress_table' + i).style.display = "";
-        openBtn.style.display = 'none';
-        closeBtn.style.display = 'block';
-    }
-    closeBtn.onclick = function () {
-        document.getElementById('progress_table' + i).style.display = 'none';
-        openBtn.style.display = 'block';
-        closeBtn.style.display = 'none';
-    }
+
     const progressNoteTitle = document.createElement('p');
     progressNoteTitle.textContent = '【プログレスノート】';
     const progressNoteCategory = document.createElement('p');
@@ -94,6 +88,30 @@ document.addEventListener('DOMContentLoaded', function() {
     progressTableTr1.appendChild(progressTableTh2);
     progressTableTr1.appendChild(progressTableTh3);
     progressTable.appendChild(progressTableTr1);
+// style="color: black; background-color: #fff;"
+    const openBtn = document.createElement('button');
+    openBtn.textContent = '開';
+    openBtn.style.display = 'none';
+    openBtn.style.color = 'black';
+    openBtn.style.backgroundColor = 'white';
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '閉';
+    closeBtn.style.display = 'block';
+    closeBtn.style.color = 'black';
+    closeBtn.style.backgroundColor = 'white';
+    openBtn.onclick = function () {
+        progressTable.style.display = '';
+        // document.getElementById('progress_table' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = '';
+        openBtn.style.display = 'none';
+        closeBtn.style.display = 'block';
+    }
+    closeBtn.onclick = function () {
+        progressTable.style.display = 'none';
+        // document.getElementById('progress_table' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = 'none';
+        openBtn.style.display = 'block';
+        closeBtn.style.display = 'none';
+    }
+
     if (question_data[0]["navigation_bar"][i]["#"] != "") {
         const progressTableTr2Sharp = document.createElement('tr');
         const progressTableTdSharp1 = document.createElement('td');
@@ -171,25 +189,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const navigation_row1_close_a = document.createElement('a');
     navigation_row1_close_a.textContent = question_data[0]["navigation_bar"][i]["title"];
     navigation_row1_close_a.style.display = 'none';
-    navigation_row1_close_a.style.backgroundColor = 'orange';
+    navigation_row1_close_a.style.backgroundColor = 'navajowhite';
     navigation_row1.onclick = function () {
-        document.getElementById('progress_note_record' + i).style.display = '';
+        document.getElementById('progress_note_record' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = 'block';
         navigation_row1.style.display = 'none';
         navigation_row1_close_a.style.display = 'block';
     }
     navigation_row1_close_a.onclick = function () {
-        document.getElementById('progress_note_record' + i).style.display = 'none';
+        document.getElementById('progress_note_record' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = 'none';
         navigation_row1.style.display = 'block';
         navigation_row1_close_a.style.display = 'none';
     }
     const navigation_bar = document.getElementById('navigation_bar');
-    if (question_data[0]["navigation_bar"][i]["parent_id"]) {
+    // もしquestion_data[0]["navigation_bar"][i]に"parent_id" と言う キーがあれば
+    if ("parent_id" in question_data[0]["navigation_bar"][i]) {
+        // alert("parent_id : " + question_data[0]["navigation_bar"][i]["parent_id"]);
         document.getElementById('tree_parent'+i).appendChild(navigation_row1);
         document.getElementById('tree_parent'+i).appendChild(navigation_row1_close_a);
     }else {
     navigation_bar.appendChild(navigation_row1);
     navigation_bar.appendChild(navigation_row1_close_a);
     }
+    // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);
 }else if (question_data[0]["navigation_bar"][i]["type"] == "tree_parent") {
     // 下のようなオブジェクトを 持つ親オブジェクトを作成
     // <div id="tree_parent">
@@ -198,13 +219,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const tree_parent = document.createElement('div');
     tree_parent.id = 'tree_parent' + question_data[0]["navigation_bar"][i]["nav_id"];
     tree_parent.style.display = 'none';
-    tree_parent.style.paddingLeft = '20px';
+    tree_parent.style.paddingLeft = '15px';
     const navigation_row2 = document.createElement('a');
     navigation_row2.textContent = question_data[0]["navigation_bar"][i]["title"] + " ▽"
     const navigation_row2_close_a = document.createElement('a');
     navigation_row2_close_a.textContent = question_data[0]["navigation_bar"][i]["title"] + " △"
     navigation_row2_close_a.style.display = 'none';
-    navigation_row2_close_a.style.backgroundColor = 'orange';
+    navigation_row2_close_a.style.backgroundColor = 'navajowhite';
     navigation_row2.onclick = function () {
         tree_parent.style.display = 'block';
         navigation_row2.style.display = 'none';
@@ -218,6 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('navigation_bar').appendChild(navigation_row2);
     document.getElementById('navigation_bar').appendChild(navigation_row2_close_a);
     document.getElementById('navigation_bar').appendChild(tree_parent);
+    // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);
 
 
 }else if (question_data[0]["navigation_bar"][i]["type"] == "blood_test") {
@@ -263,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalBg = document.createElement('div');
     modalBg.classList.add('modalBg');
     modalBg.onclick = function () {
-        closeBloodCultureModal();
+        bloodCultureArea.style.display = 'none';
     }
     const imageWrapper = document.createElement('div');
     imageWrapper.classList.add('imageWrapper');
@@ -277,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
     bloodCultureTable.classList.add('blood-culture-table');
     const bloodCultureTableTr1 = document.createElement('tr');
     const bloodCultureTableTh1 = document.createElement('th');
-    bloodCultureTableTh1.textContent = '検体結果';
+    bloodCultureTableTh1.textContent = question_data[0]["navigation_bar"][i]["title"];
     bloodCultureTableTr1.appendChild(bloodCultureTableTh1);
     bloodCultureTable.appendChild(bloodCultureTableTr1);
     const bloodCultureTableTr2 = document.createElement('tr');
@@ -285,10 +307,13 @@ document.addEventListener('DOMContentLoaded', function() {
     bloodCultureTableTd1.innerHTML = question_data[0]["navigation_bar"][i]["result"].replace(/\n/g, '<br>');
     bloodCultureTableTr2.appendChild(bloodCultureTableTd1);
     bloodCultureTable.appendChild(bloodCultureTableTr2);
+
     const closeBloodCultureBtn = document.createElement('button');
     closeBloodCultureBtn.textContent = '閉じる';
+    closeBloodCultureBtn.color = 'black';
+    closeBloodCultureBtn.style.backgroundColor = 'white';
     closeBloodCultureBtn.onclick = function () {
-        closeBloodCultureModal();
+        bloodCultureArea.style.display = 'none';
     }
     const bloodCultureWindowFooter = document.createElement('div');
     bloodCultureWindowFooter.classList.add('blood-culture-window-footer');
@@ -301,6 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
     imageWrapper.appendChild(imageContents);
     bloodCultureArea.appendChild(modalBg);
     bloodCultureArea.appendChild(imageWrapper);
+    document.body.appendChild(bloodCultureArea);
     // 下のような構造のオブジェクトを作成
     // <div class="record_links" id="navigation_bar">
 //     <!-- <a>血液検査結果</a> -->
@@ -310,16 +336,124 @@ document.addEventListener('DOMContentLoaded', function() {
 //     </div>
 // </div>
     const bloodTestLink = document.createElement('a');
-    bloodTestLink.textContent = "-" + question_data[0]["navigation_bar"][i]["title"];
+    bloodTestLink.textContent = question_data[0]["navigation_bar"][i]["title"];
     bloodTestLink.onclick = function () {
-        openBloodCultureModal();
         bloodCultureArea.style.display = '';
     }
-    if (question_data[0]["navigation_bar"][i]["parent_id"]) {
+    if ("parent_id" in question_data[0]["navigation_bar"][i]) {
         document.getElementById('tree_parent'+ question_data[0]["navigation_bar"][i]["parent_id"]).appendChild(bloodTestLink);
     }else {
         document.getElementById('navigation_bar').appendChild(bloodTestLink);
     }
+    // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);
+}else if (question_data[0]["navigation_bar"][i]["type"] == "urine_test") {
+        // 下のようなオブジェクトを作成
+    // <section id="urinalysisArea0" class="imageArea" style="display: none;">
+    // <div id="modalBg" class="modalBg" onclick="closeUrinalysisModal()"></div>
+    // <div class="imageWrapper">
+    //     <div class="imageContents">
+    //         <div class="image-window-bar">
+    //             <h1>尿検査結果</h1>
+
+    //             <button onclick="closeUrinalysisModal()">閉じる</button>
+    //         </div>
+        // <table class="urinalysis-table">
+    //                 <tr>
+    //                     <th>20XX年X月X+1日</th>
+    //                 </tr>
+    //                 <tr>
+    //                     <td>WBC: 9,900/μl(3300~8600)
+    //                         RBC: 542万/μl(435~555)
+    //                         Hgb: 15.7/dl(13.6~16.8)
+    //                         Htc: 47.4%(32.1~42.7)
+    //                         Plt: 29.0万(15.8~34.8)
+    //                         CRP: 0.1mg/dl(~0.3)
+    //                         TP: 7.5g/dl(6.6~8.1)
+    //                         Alb: 4.5g/dl(4.1~5.1)
+    //                         AST: 36U/L(13~40)
+    //                         ALT: 72U/L(10~42)
+    //                         CPK: 109IU/L(59~248)
+    //                         AMY: 44IU/L(37~125)
+    //                         GLU: 108mg/dl(69~109)
+    //                         Cre:1.15mg/dL(0.65~1.07)</td>
+    //                 </tr>
+    //             </table>
+    //         <div class="urinalysis-window-footer">
+    //         </div>
+    //     </div>
+    // </div>
+    // </section>
+    const urinalysisArea = document.createElement('section');
+    urinalysisArea.classList.add('imageArea');
+    urinalysisArea.style.zIndex = '11';
+    urinalysisArea.style.display = 'none';
+    urinalysisArea.id = 'urinalysisArea' + question_data[0]["navigation_bar"][i]["nav_id"];
+    const modalBg = document.createElement('div');
+    modalBg.classList.add('modalBg');
+    modalBg.onclick = function () {
+        urinalysisArea.style.display = 'none';
+    }
+    const imageWrapper = document.createElement('div');
+    imageWrapper.classList.add('imageWrapper');
+    const imageContents = document.createElement('div');
+    imageContents.classList.add('imageContents');
+    const imageWindowBar = document.createElement('div');
+    imageWindowBar.classList.add('image-window-bar');
+    const urinalysisTitle = document.createElement('h1');
+    urinalysisTitle.textContent = '尿検査結果';
+    const urinalysisTable = document.createElement('table');
+    urinalysisTable.classList.add('urinalysis-table');
+    const urinalysisTableTr1 = document.createElement('tr');
+    const urinalysisTableTh1 = document.createElement('th');
+    urinalysisTableTh1.textContent = question_data[0]["navigation_bar"][i]["title"];
+    urinalysisTableTr1.appendChild(urinalysisTableTh1);
+    urinalysisTable.appendChild(urinalysisTableTr1);
+    const urinalysisTableTr2 = document.createElement('tr');
+    const urinalysisTableTd1 = document.createElement('td');
+    urinalysisTableTd1.innerHTML = question_data[0]["navigation_bar"][i]["result"].replace(/\n/g, '<br>');
+    urinalysisTableTr2.appendChild(urinalysisTableTd1);
+    urinalysisTable.appendChild(urinalysisTableTr2);
+    const closeUrinalysisBtn = document.createElement('button');
+    closeUrinalysisBtn.textContent = '閉じる';
+    closeUrinalysisBtn.color = 'black';
+    closeUrinalysisBtn.style.backgroundColor = 'white';
+    closeUrinalysisBtn.onclick = function () {
+        urinalysisArea.style.display = 'none';
+    }
+    const urinalysisWindowFooter = document.createElement('div');
+    urinalysisWindowFooter.classList.add('urinalysis-window-footer');
+    urinalysisWindowFooter.innerHTML = '';
+    imageWindowBar.appendChild(urinalysisTitle);
+    imageWindowBar.appendChild(closeUrinalysisBtn);
+    imageContents.appendChild(imageWindowBar);
+    imageContents.appendChild(urinalysisWindowFooter);
+    imageContents.appendChild(urinalysisTable);
+    imageWrapper.appendChild(imageContents);
+    urinalysisArea.appendChild(modalBg);
+    urinalysisArea.appendChild(imageWrapper);
+    document.body.appendChild(urinalysisArea);
+
+
+        // 下のような構造のオブジェクトを作成
+    // <div class="record_links" id="navigation_bar">
+//     <!-- <a>血液検査結果</a> -->
+//     <a onclick="openBloodCultureModal()">血液培養結果</a>
+//     <div id="tree_parent">
+//         <a>カルテ1</a>
+//     </div>
+// </div>
+    const urineTestLink = document.createElement('a');
+    urineTestLink.textContent = question_data[0]["navigation_bar"][i]["title"];
+    urineTestLink.onclick = function () {
+        urinalysisArea.style.display = '';
+    }
+    if ("parent_id" in question_data[0]["navigation_bar"][i]) {
+        document.getElementById('tree_parent'+ question_data[0]["navigation_bar"][i]["parent_id"]).appendChild(urineTestLink);
+    }else {
+        document.getElementById('navigation_bar').appendChild(urineTestLink);
+    }
+    // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);
+
 }
 
             }
@@ -330,6 +464,7 @@ let copyImageIndex = 0;
 // アプリのスタート時間を記録する
 let start_time = new Date().toLocaleString();
 
+// カルテを閉じるボタンで起動する
 function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
     let progress_sharp = document.getElementById('progress_sharp').value + "\n";
