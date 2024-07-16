@@ -101,9 +101,25 @@ question_list = [
         "question_id": 3,
     }
 ]
+start_time = datetime.datetime.now()
+parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
+
 def main():
     eel.init("docs")
     eel.start("index.html", size=(2000, 1500))
+
+
+""" start_timeを再取得し、main()を終わらせてから再度main()を呼び出す"""
+@eel.expose
+def restart_app():
+    print("restarting app")
+    global start_time
+    global parent_dir
+    start_time = datetime.datetime.now()
+    parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
+    # 代わりにlocation.reload()を使う
+    # eel.init("docs")
+    # eel.start("index.html", size=(2000, 1500))
 
 # """アプリ起動 と同時に問題データを取得してindex.htmlに渡す"""
 @eel.expose
@@ -153,8 +169,6 @@ def start_movie_app():
     subprocess.Popen(["start",video_path], shell=True)
 
 """アプリを起動させた瞬間に保存用のフォルダを作成する。 フォルダ名はアプリを起動させた時間"""
-start_time = datetime.datetime.now()
-parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
 
 @eel.expose
 def get_start_time():
@@ -175,6 +189,7 @@ def create_output_folder():
         print("Success: Output folder created")
     else:
         print("Error: Output folder already exists")
+
 
 
 """save text file"""

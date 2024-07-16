@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const closeBloodCultureBtn = document.createElement('button');
     closeBloodCultureBtn.textContent = '閉じる';
-    closeBloodCultureBtn.color = 'black';
+    closeBloodCultureBtn.style.color = 'black';
     closeBloodCultureBtn.style.backgroundColor = 'white';
     closeBloodCultureBtn.onclick = function () {
         bloodCultureArea.style.display = 'none';
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     urinalysisTable.appendChild(urinalysisTableTr2);
     const closeUrinalysisBtn = document.createElement('button');
     closeUrinalysisBtn.textContent = '閉じる';
-    closeUrinalysisBtn.color = 'black';
+    closeUrinalysisBtn.style.color = 'black';
     closeUrinalysisBtn.style.backgroundColor = 'white';
     closeUrinalysisBtn.onclick = function () {
         urinalysisArea.style.display = 'none';
@@ -465,7 +465,8 @@ let copyImageIndex = 0;
 let start_time = new Date().toLocaleString();
 
 // カルテを閉じるボタンで起動する
-function openAnswerModal() {
+async function openAnswerModal() {
+// function openAnswerModal() {
     document.getElementById('modalArea').style.display = 'block';
     let progress_sharp = document.getElementById('progress_sharp').value + "\n";
     // コードを書かれないようにチェックした後、改行を<br>に変換する
@@ -541,8 +542,12 @@ function saveClinicalRecord() {
     let progress_plan = document.getElementById('progress_plan').value + "\n";
     progress_plan = progress_plan.replace(/'/g, '’').replace(/"/g, '’').replace(/`/g, '’');
     output_text += progress_plan;
-    alert(output_text);
+    // alert(output_text);
     eel.save_text_file(output_text)();
+    eel.restart_app()();
+    // HTMLをリロードする
+    location.reload();
+    // alert('保存しました');
 
 
 }
