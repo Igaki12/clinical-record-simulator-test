@@ -218,7 +218,7 @@
                 <button>前回処方</button>
                 <button>再診予約</button>
                 <button>検体検査</button>
-                <button style="color: black; background-color: white;" onclick="startVideoApp()">
+                <button style="color: black; background-color: white;" onclick="openVideoModal()">
                     診療動画</button>
                 <button>一般撮影</button>
                 <!-- <button style="color: black; background-color: #fff;" onclick="openImageModal()">
@@ -241,6 +241,20 @@
 
         </div>
     </div>
+    <!-- video(video/povideo.mp4)を再生するモーダルウィンドウ -->
+    <section id="videoArea" class="modalArea" style="display: none;">
+        <div id="videoBg" class="modalBg" onclick="closeVideoModal()"></div>
+        <div class="videoWrapper">
+            <div class="modalContents">
+                <div class="image-window-bar">
+                    <h1>診療動画</h1>
+                    <button onclick="closeVideoModal()" style="background-color: white; color: black;">
+                        閉じる</button>
+                </div>
+                <video id="videoPlace" src="./video/povideo.mp4" controls>お使いのブラウザはvideo(mp4形式)をサポートしていません。</video>
+            </div>
+        </div>
+    </section>
     <!-- 解答採点中のmodal windowを用意する -->
     <section id="modalArea" class="modalArea" style="display: none;">
         <div id="modalBg" class="modalBg"></div>
@@ -286,6 +300,7 @@
             </div>
         </div>
     </section>
+
     <!-- 画像を見るための別ウィンドウ -->
     <section id="imageArea" class="imageArea" style="display: none;">
         <div id="modalBg" class="modalBg" onclick="closeImageModal()"></div>

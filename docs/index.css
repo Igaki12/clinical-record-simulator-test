@@ -581,6 +581,8 @@
 
     .pasted-img-box button {
         width: 50px;
+        background-color: #f4f4f4;
+        color: black;
     }
 
     .command-panel {
@@ -723,6 +725,17 @@
         width: 100%;
         height: 100%;
     }
+    #videoArea {
+        /* 画面をスクロールできるようにしたい */
+
+        position: fixed;
+        z-index: 12;
+        /*サイトによってここの数値は調整 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
     .modalBg {
         width: 100%;
@@ -791,6 +804,15 @@
         transform: translate(-50%, -50%);
         width: 70%;
         max-width: 500px;
+        padding: 10px 10px;
+        background-color: #fff;
+    }
+
+    .videoWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         padding: 10px 10px;
         background-color: #fff;
     }

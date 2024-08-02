@@ -481,7 +481,9 @@ async function openAnswerModal() {
 
     document.getElementById('check_object').innerHTML = '';
     for (let i = 0; i < copyImageIndex + 1; i++) {
-        if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        // if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        // document.getElementById('pasted-img' + i)　の親要素が display:none だったら
+        if (i == 0 || document.getElementById('pasted-img' + i).parentElement.style.display == 'none') {
         }else {
             document.getElementById('check_object').innerHTML += '<h3>[ 画像 : src=' + document.getElementById('pasted-img' + i).src.split('/').pop() + ' ] </h3>';
         }
@@ -527,7 +529,9 @@ function saveClinicalRecord() {
     output_text += progress_subject + "\n\n" + "--[ (O) ]------------------ \n";
     let progress_object = '';
     for (let i = 0; i < copyImageIndex + 1; i++) {
-        if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        // if (i == 0 || document.getElementById('pasted-img' + i).style.display == 'none') {
+        // document.getElementById('pasted-img' + i)　の親要素が display:none だったら
+        if (i == 0 || document.getElementById('pasted-img' + i).parentElement.style.display == 'none') {
         }else {
             progress_object += '\n　\n [ 画像 : src=' + document.getElementById('pasted-img' + i).src.split('/').pop() + ' ]\n　\n';
         }
@@ -554,6 +558,13 @@ function saveClinicalRecord() {
 function closeAnswerModal() {
     document.getElementById('modalArea').style.display = 'none';
 }
+function openVideoModal() {
+    document.getElementById('videoArea').style.display = 'block';
+}
+function closeVideoModal() {
+    document.getElementById('videoArea').style.display = 'none';
+} 
+
 function openImageModal() {
     document.getElementById('imageArea').style.display = 'block';
 }
@@ -580,6 +591,7 @@ function startCTApp() {
 }
 async function displayImage() {
     // Python関数を呼び出してクリップボードから画像を取得
+    alert("印刷ポップアップが表示されますが、「キャンセル」を押してください。");
     let result_png_path = await eel.grab_clipboard_image()();
     print(result_png_path);
     
