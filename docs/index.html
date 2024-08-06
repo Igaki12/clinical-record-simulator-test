@@ -112,7 +112,7 @@
                         <div class="main-right-progressnote-record-header">
                             <div style="display: flex;">
                                 <button>開</button>
-                                <p>【プログレスノート】</p>
+                                <p>【看護カルテ】</p>
                             </div>
                             <p><span style="color: purple;">内科</span> <span>外来</span></p>
                         </div>
@@ -164,7 +164,7 @@
 
                     <div class="command-panel">
                         <!-- <button id="skip_btn">この問題をスキップ</button> -->
-                        <p>生徒ID:000000</p>
+                        <!-- <p>生徒ID:000000</p> -->
                         <!-- <button id="open_answer_modal" onclick="openAnswerModal()">カルテを提出する</button> -->
                     </div>
                 </div>
@@ -220,6 +220,11 @@
                 <button>検体検査</button>
                 <button style="color: black; background-color: white;" onclick="openVideoModal()">
                     診療動画</button>
+                <button style="color: black; background-color: white;" onclick="openVitalSignModal()">
+                    バイタルサイン</button>
+                <button style="color: black; background-color: white;" onclick="openPhysicalExamModal()">
+                    身体所見</button>
+                <!-- <button>身体所見</button> -->
                 <button>一般撮影</button>
                 <!-- <button style="color: black; background-color: #fff;" onclick="openImageModal()">
                     一般撮影
@@ -251,7 +256,7 @@
                     <button onclick="closeVideoModal()" style="background-color: white; color: black;">
                         閉じる</button>
                 </div>
-                <video id="videoPlace" src="./video/povideo.mp4" controls>お使いのブラウザはvideo(mp4形式)をサポートしていません。</video>
+                <video id="videoPlace" src="./video/povideo.mp4" controls width="1200px" >お使いのブラウザはvideoタグをサポートしていません。</video>
             </div>
         </div>
     </section>
@@ -321,6 +326,47 @@
                     <p id="imgNum">1/8</p>
                     <button id="copyImg" onclick="copyImage()">貼り付け</button>
                     <button id="nextImg" onclick="nextImage()">次</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- バイタルサインを見るための別ウィンドウ -->
+     <section id="vitalSignArea" class="imageArea" style="display: none;">
+        <div id="modalBg" class="modalBg" onclick="closeVitalSignModal()"></div>
+        <div class="imageWrapper">
+            <div class="imageContents">
+                <div class="image-window-bar">
+                    <h1>バイタルサイン</h1>
+                    <button onclick="closeVitalSignModal()" style="background-color: white; color: black;">
+                        閉じる</button>
+                </div>
+                <div>
+体温:36.6℃<br>心拍数:78/min.<br>血圧:170/84mmHg<br>呼吸数：14回/min.<br>SpO2 100%(room air)
+                </div>
+                <div class="blood-culture-window-footer">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 身体所見 を見るための別ウィンドウ -->
+    <section id="physicalExamArea" class="imageArea" style="display: none;">
+        <div id="modalBg" class="modalBg" onclick="closePhysicalExamModal()"></div>
+        <div class="imageWrapper">
+            <div class="imageContents">
+                <div class="image-window-bar">
+                    <h1>身体所見</h1>
+                    <button onclick="closePhysicalExamModal()" style="background-color: white; color: black;">
+                        閉じる</button>
+                </div>
+                <div>
+                    <!-- 意識は清明。身長170cm、体重72kg。体温36.6℃。脈拍78/分、整。血圧170/84mmHg。呼吸数14/分。SpO2 100%
+背部やや左側に強い自発痛と叩打痛あり。
+腹部には圧痛や反跳痛は認めない。
+ -->
+                    意識は清明。<br>身長170cm、体重72kg。<br>体温36.6℃。<br>脈拍78/分、整。<br>血圧170/84mmHg。<br>呼吸数14/分。<br>SpO2 100%<br>
+                </div>
+                <div class="blood-culture-window-footer">
                 </div>
             </div>
         </div>

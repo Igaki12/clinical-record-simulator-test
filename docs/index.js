@@ -26,7 +26,144 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('weight').textContent = question_data[0]["patient_header"]["weight"];
 
             for (let i = 0; i < question_data[0]["navigation_bar"].length; i++) {
-                if (question_data[0]["navigation_bar"][i]["type"] == "progress_note") {
+                    // 看護カルテの場合
+    // 根拠となるJSON データ
+    //             {
+    //     "nav_id": 2,
+    //     "title": "20XX年X月X日",
+    //     "type":"nurse_note",
+    //     "parent_id": 1,
+    //     "date_1": "20XX/X/XX 9:00",
+    //     "date_2": "20XX/X/XX 10:00",
+    //     "nurse": "看護師A",
+    //     "nurse_category": "内科",
+    //     "text": """本日、５１０号室入院。高血圧の精査目的。
+    //     入院時に背部痛の訴えがあったが、我慢ができないほどと、ナースコールあり。
+    //     かなり痛みが強そうであり、表情は苦悶様。
+    //     担当医に診察依頼。
+    //     """,
+    // },
+                if (question_data[0]["navigation_bar"][i]["type"] == "nurse_note") {
+                // 下のようなオブジェクトを作成
+                    //  <div class="main-left-progressnote-record">
+                //      <div class="main-left-progressnote-record-header">
+                //         <div style="display: flex;">
+                //             <button>開</button>
+                //             <button>閉</button>
+                //             <p>【看護カルテ】</p>
+                //         </div>
+                //         <p><span style="color: purple;">内科</span> <span>外来</span></p>
+                //     </div>
+                //     <div class="main-left-progressnote-record-header-row2">
+                //         <p>2024/05/13(月) 09:00</p>
+                //     </div>
+                //     <table class="progress-table">
+                //         <tr>
+                //             <th>依頼</th>
+                //             <th>2024/05/13(月) 10:00 看護師</th>
+                //             <th>総合　本</th>
+                //         </tr>
+                //         <tr>
+                //             <td colspan="3">本日、５１０号室入院。高血圧の精査目的。 <br> 入院時に背部痛の訴えがあったが、我慢ができないほどと、ナースコールあり。 <br> かなり痛みが強そうであり、表情は苦悶様。 <br> 担当医に診察依頼。 </td> <!-- colspan="3"で3列結合 -->  </td> <!-- colspan="3"で3列結合 -->
+                //         </tr>
+                //     </table>
+                // </div>
+                const nurseNoteRecord = document.createElement('div');
+                nurseNoteRecord.classList.add('main-left-progressnote-record');
+                nurseNoteRecord.id = 'nurse_note_record' + question_data[0]["navigation_bar"][i]["nav_id"];
+                nurseNoteRecord.style.display = 'none';
+                const nurseNoteRecordHeader = document.createElement('div');
+                nurseNoteRecordHeader.classList.add('main-left-progressnote-record-header');
+                const nurseNoteRecordHeaderRow1 = document.createElement('div');
+                nurseNoteRecordHeaderRow1.style.display = 'flex';
+                const nurseNoteTitle = document.createElement('p');
+                nurseNoteTitle.textContent = '【看護カルテ】';
+                const nurseNoteCategory = document.createElement('p');
+                nurseNoteCategory.innerHTML = '<span style="color: purple;">' + question_data[0]["navigation_bar"][i]["nurse_category"] + '</span> <span>外来</span>';
+                const nurseNoteRecordHeaderRow2 = document.createElement('div');
+                nurseNoteRecordHeaderRow2.classList.add('main-left-progressnote-record-header-row2');
+                const nurseNoteDate = document.createElement('p');
+                nurseNoteDate.textContent = question_data[0]["navigation_bar"][i]["date_1"];
+                const nurseTable = document.createElement('table');
+                nurseTable.classList.add('nurse-table');
+                const nurseTableTr1 = document.createElement('tr');
+                const nurseTableTh1 = document.createElement('th');
+                nurseTableTh1.textContent = '依頼';
+                const nurseTableTh2 = document.createElement('th');
+                nurseTableTh2.textContent = question_data[0]["navigation_bar"][i]["date_2"] + ' 看護師)' + question_data[0]["navigation_bar"][i]["nurse"];
+                const nurseTableTh3 = document.createElement('th');
+                nurseTableTh3.textContent = question_data[0]["navigation_bar"][i]["nurse_category"];
+                const openBtn = document.createElement('button');
+                openBtn.textContent = '開';
+                openBtn.style.display = 'none';
+                openBtn.style.color = 'black';
+                openBtn.style.backgroundColor = 'white';
+                const closeBtn = document.createElement('button');
+                closeBtn.textContent = '閉';
+                closeBtn.style.display = 'block';
+                closeBtn.style.color = 'black';
+                closeBtn.style.backgroundColor = 'white';
+                openBtn.onclick = function () {
+                    nurseTable.style.display = '';
+                    openBtn.style.display = 'none';
+                    closeBtn.style.display = 'block';
+                }
+                closeBtn.onclick = function () {
+                    nurseTable.style.display = 'none';
+                    openBtn.style.display = 'block';
+                    closeBtn.style.display = 'none';
+                }
+                nurseTableTr1.appendChild(nurseTableTh1);
+                nurseTableTr1.appendChild(nurseTableTh2);
+                nurseTableTr1.appendChild(nurseTableTh3);
+                nurseTable.appendChild(nurseTableTr1);
+                const nurseTableTr2 = document.createElement('tr');
+                const nurseTableTd1 = document.createElement('td');
+                nurseTableTd1.colSpan = 3;
+                // 改行状態 を保持しながら表示する
+                nurseTableTd1.innerHTML = question_data[0]["navigation_bar"][i]["text"].replace(/\n/g, '<br>');
+                // alert(question_data[0]["navigation_bar"][i]["text"]);
+
+                nurseTableTr2.appendChild(nurseTableTd1);
+                nurseTable.appendChild(nurseTableTr2);
+                nurseNoteRecordHeaderRow1.appendChild(openBtn);
+                nurseNoteRecordHeaderRow1.appendChild(closeBtn);
+                nurseNoteRecordHeaderRow1.appendChild(nurseNoteTitle);
+                nurseNoteRecordHeader.appendChild(nurseNoteRecordHeaderRow1);
+                nurseNoteRecordHeader.appendChild(nurseNoteCategory);
+                nurseNoteRecordHeaderRow2.appendChild(nurseNoteDate);
+                nurseNoteRecord.appendChild(nurseNoteRecordHeader);
+                nurseNoteRecord.appendChild(nurseNoteRecordHeaderRow2);
+                nurseNoteRecord.appendChild(nurseTable);
+                const mainLeft = document.getElementById('main-left');
+                mainLeft.appendChild(nurseNoteRecord);
+                const navigation_row1 = document.createElement('a');
+                navigation_row1.textContent = question_data[0]["navigation_bar"][i]["title"];
+                const navigation_row1_close_a = document.createElement('a');
+                navigation_row1_close_a.textContent = question_data[0]["navigation_bar"][i]["title"];
+                navigation_row1_close_a.style.display = 'none';
+                navigation_row1_close_a.style.backgroundColor = 'navajowhite';
+                navigation_row1.onclick = function () {
+                    document.getElementById('nurse_note_record' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = 'block';
+                    navigation_row1.style.display = 'none';
+                    navigation_row1_close_a.style.display = 'block';
+                }
+                navigation_row1_close_a.onclick = function () {
+                    document.getElementById('nurse_note_record' + question_data[0]["navigation_bar"][i]["nav_id"]).style.display = 'none';
+                    navigation_row1.style.display = 'block';
+                    navigation_row1_close_a.style.display = 'none';
+                }
+                const navigation_bar = document.getElementById('navigation_bar');
+                if ("parent_id" in question_data[0]["navigation_bar"][i]) {
+                    document.getElementById('tree_parent'+i).appendChild(navigation_row1);
+                    document.getElementById('tree_parent'+i).appendChild(navigation_row1_close_a);
+                }
+                else {
+                navigation_bar.appendChild(navigation_row1);
+                navigation_bar.appendChild(navigation_row1_close_a);
+                }
+                // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);       
+            }else if (question_data[0]["navigation_bar"][i]["type"] == "progress_note") {
 
             // navigation_barに対応する。HTMLオブジェクトを 取得して作成。
     //  <div class="main-left-progressnote-record">
@@ -454,7 +591,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // alert("Successed : " + question_data[0]["navigation_bar"][i]["title"]);
 
+
 }
+
 
             }
 
@@ -558,11 +697,26 @@ function saveClinicalRecord() {
 function closeAnswerModal() {
     document.getElementById('modalArea').style.display = 'none';
 }
+
+function openVitalSignModal() {
+    document.getElementById('vitalSignArea').style.display = 'block';
+}
+function closeVitalSignModal() {
+    document.getElementById('vitalSignArea').style.display = 'none';
+}
+function openPhysicalExamModal() {
+    document.getElementById('physicalExamArea').style.display = 'block';
+}
+function closePhysicalExamModal() {
+    document.getElementById('physicalExamArea').style.display = 'none';
+}
 function openVideoModal() {
     document.getElementById('videoArea').style.display = 'block';
 }
 function closeVideoModal() {
     document.getElementById('videoArea').style.display = 'none';
+    // videoタグで再生している動画を停止する
+    document.getElementById('videoPlace').pause();
 } 
 
 function openImageModal() {

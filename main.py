@@ -31,24 +31,40 @@ question_list = [
                 "title": "カルテ",
                 "type":"tree_parent",
             },
+            # {
+            #     "nav_id": 2,
+            #     "title": "20XX年X月X日",
+            #     "type":"progress_note",
+            #     "parent_id": 1,
+            #     "date_1": "20XX/X/XX 9:00",
+            #     "date_2": "20XX/X/XX 10:00",
+            #     "doctor": "医大 花子",
+            #     "doctor_category": "内科",
+            #     "#": """""",
+            #     "S": """""",
+            #     "O": """体温:36.6℃　心拍数:78/min.  
+            #     血圧:170/84mmHg  
+            #     呼吸数：14回/min.　SpO2 100%(room air)
+            #     """,
+            #     "A": """""",
+            #     "P": """""",
+            # },
             {
                 "nav_id": 2,
                 "title": "20XX年X月X日",
-                "type":"progress_note",
+                "type":"nurse_note",
                 "parent_id": 1,
                 "date_1": "20XX/X/XX 9:00",
                 "date_2": "20XX/X/XX 10:00",
-                "doctor": "医大 花子",
-                "doctor_category": "内科",
-                "#": """""",
-                "S": """""",
-                "O": """体温:36.6℃　心拍数:78/min.  
-                血圧:170/84mmHg  
-                呼吸数：14回/min.　SpO2 100%(room air)
+                "nurse": "看護師A",
+                "nurse_category": "内科",
+                "text": """本日、５１０号室入院。高血圧の精査目的。
+                入院時に背部痛の訴えがあったが、我慢ができないほどと、ナースコールあり。
+                かなり痛みが強そうであり、表情は苦悶様。
+                担当医に診察依頼。
                 """,
-                "A": """""",
-                "P": """""",
-            },{
+            },
+            {
                 "nav_id": 3,
                 "title": "検体検査結果",
                 "type":"tree_parent",
@@ -105,8 +121,18 @@ start_time = datetime.datetime.now()
 parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
 
 def main():
-    eel.init("docs")
-    eel.start("index.html", size=(2000, 1500))
+    # OSがWindowsでない場合は、以下のコードを使う
+    if os.name == 'nt':
+        eel.init("C:/Users/Administrator/Desktop/clinical-record-simulator/docs")
+        eel.start("index.html", size=(2000, 1500),mode='edge',suppress_error=True)
+    else:
+        eel.init("docs")
+        eel.start("index.html", size=(2000, 1500))
+    # eel.init("docs")
+    # eel.start("index.html", size=(2000, 1500))
+    # OSがウィンドウズである場合は、代わりに以下のコードを使う
+    #     eel.init("C:/Users/Administrator/Desktop/clinical-record-simulator/docs")
+    # eel.start("index.html", size=(2000, 1500),mode='edge',suppress_error=True)
 
 
 """ start_timeを再取得し、main()を終わらせてから再度main()を呼び出す"""
