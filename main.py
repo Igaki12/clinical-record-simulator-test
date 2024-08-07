@@ -121,18 +121,13 @@ start_time = datetime.datetime.now()
 parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
 
 def main():
-    # OSがWindowsでない場合は、以下のコードを使う
+    # OSがWindowsである場合は、以下のコードを使う
     if os.name == 'nt':
         eel.init("C:/Users/Administrator/Desktop/clinical-record-simulator/docs")
         eel.start("index.html", size=(2000, 1500),mode='edge',suppress_error=True)
     else:
         eel.init("docs")
         eel.start("index.html", size=(2000, 1500))
-    # eel.init("docs")
-    # eel.start("index.html", size=(2000, 1500))
-    # OSがウィンドウズである場合は、代わりに以下のコードを使う
-    #     eel.init("C:/Users/Administrator/Desktop/clinical-record-simulator/docs")
-    # eel.start("index.html", size=(2000, 1500),mode='edge',suppress_error=True)
 
 
 """ start_timeを再取得し、main()を終わらせてから再度main()を呼び出す"""
@@ -144,43 +139,11 @@ def restart_app():
     start_time = datetime.datetime.now()
     parent_dir = os.path.join(os.getcwd(),"docs/output/" + start_time.strftime('%Y%m%d%H%M%S'))
     # 代わりにlocation.reload()を使う
-    # eel.init("docs")
-    # eel.start("index.html", size=(2000, 1500))
 
 # """アプリ起動 と同時に問題データを取得してindex.htmlに渡す"""
 @eel.expose
 def get_question_data():
     return question_list
-
-
-
-
-# """link1が押下された際に呼び出すスクリプト"""
-# @eel.expose
-# def link1_click():
-#     print("link1_clicked")
-
-# """link2が押下された際に呼び出すスクリプト"""
-# @eel.expose
-# def link2_click(args):
-#     print(args)
-#     return "link2_clicked"
-
-# """次へボタンが押下された際に呼び出すスクリプト"""
-# @eel.expose
-# def next_question(question_index):
-#     print("next_question_button")
-#     if question_index < len(question_list) + 1:
-#         return question_list[question_index - 1]["question"]
-#     else:
-#         return "全ての問題が終了しました。"
-
-# """アプリのスタート時間を引き渡すスクリプト"""
-# @eel.expose
-# def get_start_time():
-#     today = datetime.datetime.now()
-#     return today.strftime('%Y/%m/%d %H:%M:%S')
-
 
 """CT画像アプリ起動ボタンが押下された際に呼び出すスクリプト"""
 @eel.expose

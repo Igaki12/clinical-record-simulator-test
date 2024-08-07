@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge" /> -->
     <title>電子カルテ</title>
     <!-- docs/index.js　からJSスクリプトを導入 -->
     <script src="./index.js"></script>
@@ -69,11 +68,6 @@
                     </div>
                     <!-- ナビゲーションメニューのリンクなどをここに追加 -->
                     <div class="record_links" id="navigation_bar">
-                        <!-- <a>血液検査結果</a> -->
-                        <!-- <a onclick="openBloodCultureModal()">血液培養結果</a> -->
-                        <!-- <div id="tree_parent">
-                            <a>カルテ1</a>
-                        </div> -->
 
                     </div>
                 </nav>
@@ -141,10 +135,6 @@
                                     <div id="img-pastable">
                                         <textarea name="progress_object0" class="dynamic-textarea" id="progress_object0"
                                             cols="70" rows="5" placeholder="ここに入力"></textarea>
-                                        <!-- <div class="pasted-img-box">
-                                            <img src="./img/1.png" alt="画像1">
-                                            <button onclick="deleteImage()">削除</button>
-                                        </div> -->
                                     </div>
 
                                 </td>
@@ -163,9 +153,6 @@
                     </div>
 
                     <div class="command-panel">
-                        <!-- <button id="skip_btn">この問題をスキップ</button> -->
-                        <!-- <p>生徒ID:000000</p> -->
-                        <!-- <button id="open_answer_modal" onclick="openAnswerModal()">カルテを提出する</button> -->
                     </div>
                 </div>
 
@@ -224,15 +211,11 @@
                     バイタルサイン</button>
                 <button style="color: black; background-color: white;" onclick="openPhysicalExamModal()">
                     身体所見</button>
-                <!-- <button>身体所見</button> -->
                 <button>一般撮影</button>
-                <!-- <button style="color: black; background-color: #fff;" onclick="openImageModal()">
-                    一般撮影
-                </button> -->
                 <button style="color: black; background-color: #fff;" onclick="startCTApp()">CT検査</button>
-                <button id="pasteCTImageBtn" style="color: black; background-color: #fff; display: none;" onclick="displayImage()">
+                <button id="pasteCTImageBtn" style="color: black; background-color: #fff; display: none;"
+                    onclick="displayImage()">
                     ←CT画像を貼付</button>
-                <!-- <button>←CT画像を貼付</button> -->
                 <!-- ボタンを押すことで専用アプリを起動するようにする。 -->
                 <!-- PIL ImageGrab.grabClipboardで貼り付け -->
                 <button>外来注射</button>
@@ -256,7 +239,8 @@
                     <button onclick="closeVideoModal()" style="background-color: white; color: black;">
                         閉じる</button>
                 </div>
-                <video id="videoPlace" src="./video/povideo.mp4" controls width="1200px" >お使いのブラウザはvideoタグをサポートしていません。</video>
+                <video id="videoPlace" src="./video/povideo.mp4" controls
+                    width="1200px">お使いのブラウザはvideoタグをサポートしていません。</video>
             </div>
         </div>
     </section>
@@ -316,11 +300,7 @@
                     <button onclick="closeImageModal()" style="background-color: white; color: black;">
                         閉じる</button>
                 </div>
-                <!-- ここにスクロールパラパラ漫画 src:https://lifeinfo-navi.com/p=5303  -->
                 <img id="imagePlace" src="./img/1.png" alt="内視鏡所見" />
-                <!-- <img id="imagePlace" src="https://lifeinfo-navi.com/wp-content/uploads/2022/02/1.png"/> -->
-                <p></p>
-                <!-- <img src="./img/8.png" alt="内視鏡所見"> -->
                 <div class="image-window-footer">
                     <button id="backImg" onclick="backImage()">前</button>
                     <p id="imgNum">1/8</p>
@@ -332,7 +312,7 @@
     </section>
 
     <!-- バイタルサインを見るための別ウィンドウ -->
-     <section id="vitalSignArea" class="imageArea" style="display: none;">
+    <section id="vitalSignArea" class="imageArea" style="display: none;">
         <div id="modalBg" class="modalBg" onclick="closeVitalSignModal()"></div>
         <div class="imageWrapper">
             <div class="imageContents">
@@ -342,7 +322,7 @@
                         閉じる</button>
                 </div>
                 <div>
-体温:36.6℃<br>心拍数:78/min.<br>血圧:170/84mmHg<br>呼吸数：14回/min.<br>SpO2 100%(room air)
+                    体温:36.6℃<br>心拍数:78/min.<br>血圧:170/84mmHg<br>呼吸数：14回/min.<br>SpO2 100%(room air)
                 </div>
                 <div class="blood-culture-window-footer">
                 </div>
@@ -360,11 +340,9 @@
                         閉じる</button>
                 </div>
                 <div>
-                    <!-- 意識は清明。身長170cm、体重72kg。体温36.6℃。脈拍78/分、整。血圧170/84mmHg。呼吸数14/分。SpO2 100%
-背部やや左側に強い自発痛と叩打痛あり。
-腹部には圧痛や反跳痛は認めない。
- -->
-                    意識は清明。<br>身長170cm、体重72kg。<br>体温36.6℃。<br>脈拍78/分、整。<br>血圧170/84mmHg。<br>呼吸数14/分。<br>SpO2 100%<br>
+                    背部やや左側に強い自発痛と叩打痛あり。<br>
+                    腹部には圧痛や反跳痛は認めない。<br>
+
                 </div>
                 <div class="blood-culture-window-footer">
                 </div>
@@ -383,40 +361,19 @@
                 </div>
                 <div id="bloodCultureResult">
                     WBC: 9,900/μl(3300~8600)
-                            RBC: 542万/μl(435~555)
-                            Hgb: 15.7/dl(13.6~16.8)
-                            Htc: 47.4%(32.1~42.7)
-                            Plt: 29.0万(15.8~34.8)
-                            CRP: 0.1mg/dl(~0.3)
-                            TP: 7.5g/dl(6.6~8.1)
-                            Alb: 4.5g/dl(4.1~5.1)
+                    RBC: 542万/μl(435~555)
+                    Hgb: 15.7/dl(13.6~16.8)
+                    Htc: 47.4%(32.1~42.7)
+                    Plt: 29.0万(15.8~34.8)
+                    CRP: 0.1mg/dl(~0.3)
+                    TP: 7.5g/dl(6.6~8.1)
+                    Alb: 4.5g/dl(4.1~5.1)
                 </div>
-                <!-- <table class="blood-culture-table">
-                    <tr>
-                        <th>検体結果</th>
-                    </tr>
-                    <tr>
-                        <td>WBC: 9,900/μl(3300~8600)
-                            RBC: 542万/μl(435~555)
-                            Hgb: 15.7/dl(13.6~16.8)
-                            Htc: 47.4%(32.1~42.7)
-                            Plt: 29.0万(15.8~34.8)
-                            CRP: 0.1mg/dl(~0.3)
-                            TP: 7.5g/dl(6.6~8.1)
-                            Alb: 4.5g/dl(4.1~5.1)
-                            AST: 36U/L(13~40)
-                            ALT: 72U/L(10~42)
-                            CPK: 109IU/L(59~248)
-                            AMY: 44IU/L(37~125)
-                            GLU: 108mg/dl(69~109)
-                            Cre:1.15mg/dL(0.65~1.07)</td>
-                    </tr>
-                    </table> -->
                 <div class="blood-culture-window-footer">
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 </body>
 
 </html>
