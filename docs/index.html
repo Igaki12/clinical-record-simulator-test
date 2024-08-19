@@ -199,32 +199,33 @@
                 <button>便利機能</button>
             </div>
             <div class="nav-right-others">
-                <button>セット展開</button>
-                <button>文書切り替え</button>
-                <button>外来処方</button>
-                <button>前回処方</button>
-                <button>再診予約</button>
-                <button>検体検査</button>
-                <button style="color: black; background-color: white;" onclick="openVideoModal()">
+                <button id="セット展開">セット展開</button>
+                <button id="文書切り替え">文書切り替え</button>
+                <button id="外来処方">外来処方</button>
+                <button id="前回処方">前回処方</button>
+                <button id="再診予約">再診予約</button>
+                <button id="検体検査">検体検査</button>
+                <button style="color: black; background-color: white;" onclick="openVideoModal()" id="診療動画">
                     診療動画</button>
-                <button style="color: black; background-color: white;" onclick="openVitalSignModal()">
+                <button style="color: black; background-color: white;" onclick="openVitalSignModal()" id="バイタルサイン">
                     バイタルサイン</button>
-                <button style="color: black; background-color: white;" onclick="openPhysicalExamModal()">
+                <button style="color: black; background-color: white;" onclick="openPhysicalExamModal()" id="身体所見">
                     身体所見</button>
-                <button>一般撮影</button>
-                <button style="color: black; background-color: #fff;" onclick="startCTApp()">CT検査</button>
+                <button id="一般撮影">一般撮影</button>
+                <button style="color: black; background-color: #fff;" onclick="startCTApp()" id="CT検査">
+                    CT検査</button>
                 <button id="pasteCTImageBtn" style="color: black; background-color: #fff; display: none;"
-                    onclick="displayImage()">
+                    onclick="displayImage()" id="CT画像を貼付">
                     ←CT画像を貼付</button>
                 <!-- ボタンを押すことで専用アプリを起動するようにする。 -->
                 <!-- PIL ImageGrab.grabClipboardで貼り付け -->
-                <button>外来注射</button>
-                <button>外来処置</button>
-                <button>入院申込オーダ</button>
-                <button>予約カレンダ</button>
-                <button>指導料</button>
-                <button>リハビリ処方</button>
-                <button>画像連携</button>
+                <button id="外来注射">外来注射</button>
+                <button id="外来処置">外来処置</button>
+                <button id="入院申込オーダ">入院申込オーダ</button>
+                <button id="予約カレンダ">予約カレンダ</button>
+                <button id="指導料">指導料</button>
+                <button id="リハビリ処方">リハビリ処方</button>
+                <button id="画像連携">画像連携</button>
             </div>
 
         </div>
@@ -312,7 +313,7 @@
     </section>
 
     <!-- バイタルサインを見るための別ウィンドウ -->
-    <section id="vitalSignArea" class="imageArea" style="display: none;">
+    <!-- <section id="vitalSignArea" class="imageArea" style="display: none;">
         <div id="modalBg" class="modalBg" onclick="closeVitalSignModal()"></div>
         <div class="imageWrapper">
             <div class="imageContents">
@@ -328,9 +329,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
     <!-- 身体所見 を見るための別ウィンドウ -->
-    <section id="physicalExamArea" class="imageArea" style="display: none;">
+    <!-- <section id="physicalExamArea" class="imageArea" style="display: none;">
         <div id="modalBg" class="modalBg" onclick="closePhysicalExamModal()"></div>
         <div class="imageWrapper">
             <div class="imageContents">
@@ -348,9 +350,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
     <!-- 血液培養結果詳細(テーブル形式)を見るための別ウィンドウ -->
-    <section id="bloodCultureArea" class="imageArea" style="display: none;">
+    <!-- <section id="bloodCultureArea" class="imageArea" style="display: none;">
         <div id="modalBg" class="modalBg" onclick="closeBloodCultureModal()"></div>
         <div class="imageWrapper">
             <div class="imageContents">
@@ -373,7 +376,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    
 </body>
 
 </html>

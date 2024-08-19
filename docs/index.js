@@ -25,6 +25,105 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('age').textContent = question_data[0]["patient_header"]["age"];
             document.getElementById('weight').textContent = question_data[0]["patient_header"]["weight"];
 
+            // "right_side_bar":[
+        //     {
+        //         "bar_title": "診療動画",
+        //         "file_source": "docs/question_files/question1/video/povideo.mp4",
+        //         "type": "video",
+        //     },{
+        //         "bar_title": "バイタルサイン",
+        //         "type": "text",
+        //         "text": """体温:36.6℃
+        //         心拍数:78/min.
+        //         血圧:170/84mmHg
+        //         呼吸数：14回/min.
+        //         SpO2 100%(room air)
+        //         """
+        //     },{
+        //         "bar_title": "身体所見",
+        //         "type": "text",
+        //         "text": """背部やや左側に強い自発痛と叩打痛あり。
+        //             腹部には圧痛や反跳痛は認めない。
+        //             """
+        //     },{
+        //         "bar_title": "CT検査",
+        //         "type": "external_app",
+        //         "file_source": "docs/question_files/question1/CT_DICOM_img",
+        //     }
+        // ]
+            for (let i=0; i<question_data[0]["right_side_bar"].length; i++) {
+                // もしbar_titleと同じtextのボタンがあれば、そのボタンのonclickを変更する
+                // なければ、新しいボタンを作成する
+                if (document.getElementById(question_data[0]["right_side_bar"][i]["bar_title"])) {
+                    const this_button = document.getElementById(question_data[0]["right_side_bar"][i]["bar_title"]);
+                    // ボタンのstyle="color: black; background-color: white;" 
+                    this_button.style.color = 'black';
+                    this_button.style.backgroundColor = 'white';
+                    // type=textの場合
+                    if (question_data[0]["right_side_bar"][i]["type"] == "text") {
+                    // このようなモーダルウィンドウを作成
+                    //     <section id="vitalSignArea" class="imageArea" style="display: none;">
+    //     <div id="modalBg" class="modalBg" onclick="closeVitalSignModal()"></div>
+    //     <div class="imageWrapper">
+    //         <div class="imageContents">
+    //             <div class="image-window-bar">
+    //                 <h1>バイタルサイン</h1>
+    //                 <button onclick="closeVitalSignModal()" style="background-color: white; color: black;">
+    //                     閉じる</button>
+    //             </div>
+    //             <div>
+    //                 体温:36.6℃<br>心拍数:78/min.<br>血圧:170/84mmHg<br>呼吸数：14回/min.<br>SpO2 100%(room air)
+    //             </div>
+    //             <div class="blood-culture-window-footer">
+    //             </div>
+    //         </div>
+    //     </div>
+    // </section>
+                    const newModalArea = document.createElement('section');
+                    newModalArea.classList.add('imageArea');
+                    newModalArea.style.display = 'none';
+                    newModalArea.id = question_data[0]["right_side_bar"][i]["bar_title"] + 'Area';
+                    const newModalBg = document.createElement('div');
+                    newModalBg.classList.add('modalBg');
+                    newModalBg.onclick = function () {
+                        newModalArea.style.display = 'none';
+                    }
+                    const newImageWrapper = document.createElement('div');
+                    newImageWrapper.classList.add('imageWrapper');
+                    const newImageContents = document.createElement('div');
+                    newImageContents.classList.add('imageContents');
+                    const newImageWindowBar = document.createElement('div');
+                    newImageWindowBar.classList.add('image-window-bar');
+                    const newTitle = document.createElement('h1');
+                    newTitle.textContent = question_data[0]["right_side_bar"][i]["bar_title"];
+                    const newButton = document.createElement('button');
+                    newButton.textContent = '閉じる';
+                    newButton.style.color = 'black';
+                    newButton.style.backgroundColor = 'white';
+                    newButton.onclick = function () {
+                        newModalArea.style.display = 'none';
+                    }
+                    const newContent = document.createElement('div');
+                    newContent.innerHTML = question_data[0]["right_side_bar"][i]["text"].replace(/\n/g, '<br>') + '<br>';
+                    const newFooter = document.createElement('div');
+                    newFooter.classList.add('blood-culture-window-footer');
+                    newImageWindowBar.appendChild(newTitle);
+                    newImageWindowBar.appendChild(newButton);
+                    newImageContents.appendChild(newImageWindowBar);
+                    newImageContents.appendChild(newContent);
+                    newImageContents.appendChild(newFooter);
+                    newImageWrapper.appendChild(newImageContents);
+                    newModalArea.appendChild(newModalBg);
+                    newModalArea.appendChild(newImageWrapper);
+                    document.body.appendChild(newModalArea);
+                    this_button.onclick = function () {
+                        newModalArea.style.display = '';
+                    }
+                    }
+                // } else if (question_data[0]["right_side_bar"][i]["type"] == "video") {
+                }
+            }
+
             for (let i = 0; i < question_data[0]["navigation_bar"].length; i++) {
                 // 看護カルテの場合
                 if (question_data[0]["navigation_bar"][i]["type"] == "nurse_note") {

@@ -31,24 +31,6 @@ question_list = [
                 "title": "カルテ",
                 "type":"tree_parent",
             },
-            # {
-            #     "nav_id": 2,
-            #     "title": "20XX年X月X日",
-            #     "type":"progress_note",
-            #     "parent_id": 1,
-            #     "date_1": "20XX/X/XX 9:00",
-            #     "date_2": "20XX/X/XX 10:00",
-            #     "doctor": "医大 花子",
-            #     "doctor_category": "内科",
-            #     "#": """""",
-            #     "S": """""",
-            #     "O": """体温:36.6℃　心拍数:78/min.  
-            #     血圧:170/84mmHg  
-            #     呼吸数：14回/min.　SpO2 100%(room air)
-            #     """,
-            #     "A": """""",
-            #     "P": """""",
-            # },
             {
                 "nav_id": 2,
                 "title": "20XX年X月X日",
@@ -108,7 +90,36 @@ question_list = [
                 ウロビリノゲン：0.1
                 """,
             }
+        ],
+        "right_side_bar":[
+            {
+                "bar_title": "診療動画",
+                "file_source": "docs/question_files/question1/video/povideo.mp4",
+                "type": "video",
+            },{
+                "bar_title": "バイタルサイン",
+                "type": "text",
+                "text": """体温:36.6℃
+                心拍数:78/min.
+                血圧:170/84mmHg
+                呼吸数：14回/min.
+                SpO2 100%(room air)
+                """
+            },{
+                "bar_title": "身体所見",
+                "type": "text",
+                "text": """背部やや左側に強い自発痛と叩打痛あり。
+                    腹部には圧痛や反跳痛は認めない。
+                    """
+            },{
+                "bar_title": "CT検査",
+                "type": "external_app",
+                "file_source": "docs/question_files/question1/CT_DICOM_img",
+            }
         ]
+    },
+    {
+        "question_id": 0,
     },
     {
         "question_id": 2,
