@@ -806,9 +806,9 @@ function startCTApp() {
 }
 async function displayImage() {
     // Python関数を呼び出してクリップボードから画像を取得
-    alert("印刷ポップアップが表示されますが、「キャンセル」を押してください。");
+    // alert("印刷ポップアップが表示されますが、「キャンセル」を押してください。");
     let result_png_path = await eel.grab_clipboard_image()();
-    print(result_png_path);
+    // print(result_png_path);
 
     if (result_png_path) {
         // 画像を表示
