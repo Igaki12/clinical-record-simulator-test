@@ -740,7 +740,7 @@
 
 
     /* モーダルウィンドウ */
-    #modalArea {
+    .modalArea {
         /* 画面をスクロールできるようにしたい */
 
         position: fixed;
@@ -751,7 +751,7 @@
         width: 100%;
         height: 100%;
     }
-    #videoArea {
+    .videoArea {
         /* 画面をスクロールできるようにしたい */
 
         position: fixed;

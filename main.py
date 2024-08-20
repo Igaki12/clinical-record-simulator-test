@@ -94,7 +94,8 @@ question_list = [
         "right_side_bar":[
             {
                 "bar_title": "診療動画",
-                "file_source": "docs/question_files/question1/video/povideo.mp4",
+                "file_source": "./question_files/question1/video/povideo.mp4",
+                # "file_source": "./video/povideo.mp4",
                 "type": "video",
             },{
                 "bar_title": "バイタルサイン",
